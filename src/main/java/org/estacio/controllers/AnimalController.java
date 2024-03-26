@@ -28,11 +28,10 @@ public class AnimalController {
 
             return new ResponseEntity<>(animals, new HttpHeaders(), HttpStatus.OK);
         } catch (Exception err) {
-            System.out.println("Ocorreu ao listar os animais!");
+            System.out.println("Ocorreu um erro ao listar os animais");
             System.out.println(err);
             return ResponseEntity.internalServerError().body(HttpStatus.INTERNAL_SERVER_ERROR);
         }
-
     }
 
     @PostMapping("/")
@@ -42,12 +41,54 @@ public class AnimalController {
             entityManager.persist(new Animal(animal.getEntranceDate(), animal.getRace(),
                     animal.getLocal(), animal.getAnamnesis()));
 
-            return new ResponseEntity<>(HttpStatus.OK);
+            return new ResponseEntity<>(HttpStatus.CREATED);
         } catch (Exception err) {
-            System.out.println("Ocorreu um error ao registrar o animal!");
+            System.out.println("Ocorreu um erro ao registrar o animal");
             System.out.println(err);
             return ResponseEntity.internalServerError().body(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
+    @PutMapping("/{id}")
+    @Transactional
+    public ResponseEntity<?> edit(@PathVariable int id, @RequestBody AnimalDto animalData) {
+        try {
+            Animal animalFound = entityManager.find(Animal.class, id);
+
+            if (animalFound == null) {
+                return ResponseEntity.badRequest().body("Animal não encontrado");
+            }
+
+            Animal dataEdited = new Animal(id, animalData.getEntranceDate(), animalData.getRace(),
+                    animalData.getLocal(), animalData.getAnamnesis());
+
+            entityManager.merge(dataEdited);
+            return new ResponseEntity<>(HttpStatus.OK);
+        } catch (Exception err) {
+            System.out.println("Ocorreu um erro ao editar os dados do animal");
+            System.out.println(err);
+            return ResponseEntity.internalServerError().body(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    // TODO: Metodo de teste. Os dados do animal não devem ser deletados, ele é
+    //  apenas movido para outra tabela (de obito ou doação)
+    @DeleteMapping("/{id}")
+    @Transactional
+    public ResponseEntity<?> delete(@PathVariable int id) {
+        try {
+            Animal animalFound = entityManager.find(Animal.class, id);
+
+            if (animalFound == null) {
+                return ResponseEntity.badRequest().body("Animal não encontrado");
+            }
+
+            entityManager.remove(animalFound);
+            return new ResponseEntity<>(HttpStatus.OK);
+        } catch (Exception err) {
+            System.out.println("Ocorreu um erro ao deletar os dados do animal");
+            System.out.println(err);
+            return ResponseEntity.internalServerError().body(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 }
