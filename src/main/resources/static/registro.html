@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/registro.css">
+    <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css">
+    <script src="js/bootstrap.js"></script>
+    <title>registro</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="form-image">
+        <img src="img/405025-svetik_1920x1080.jpg" id="foto">
+    </div>
+
+    <div class="box">
+        <h1>Cadastro de Pets</h1>
+        <form id="petForm">
+            <label for="entranceDate">Data de entrada:</label><br>
+            <input type="date" id="entranceDate" name="entranceDate" style="width: 200px; height: 30px" required><br>
+
+            <label for="race">Raça:</label><br>
+            <input type="text" id="race" name="race" style="width: 200px; height: 30px" required><br>
+
+            <label for="local">Localização:</label><br>
+            <input type="text" id="local" name="local" style="width: 200px; height: 30px" required><br>
+
+            <label for="anamnesis">Anamnese:</label><br>
+            <textarea id="anamnesis" class="form-control" name="anamnesis" style="width: 200px; height: 30px"></textarea><br>
+
+            <div class="continue-button">
+                <input type="submit" value="Cadastrar"> 
+            </div>
+        </form>
+    </div>
+    
+    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#editarModal">
+        Editar Dados
+    </button>
+    
+    <div class="modal fade" id="editarModal" tabindex="-1" role="dialog" aria-labelledby="editarModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editarModalLabel">Editar Dados</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="editPetForm">
+                        <label for="editEntranceDate">Data de entrada:</label><br>
+                        <input type="date" id="editEntranceDate" name="editEntranceDate" class="col-sm" required><br>
+
+                        <label for="editRace">Raça:</label><br>
+                        <input type="text" id="editRace" name="editRace" class="col-sm" required><br>
+
+                        <label for="editLocal">Localização:</label><br>
+                        <input type="text" id="editLocal" name="editLocal" class="col-sm"required><br>
+
+                        <label for="editAnamnesis">Anamnese:</label><br>
+                        <input type="text" id="editAnamnesis" name="editAnamnesis" class="col-sm"><br>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary clr" data-dismiss="modal">cancelar</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">excluir</button>
+                    <button type="button" class="btn btn-secondary" onclick="salvarDados()">Salvar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Bootstrap JS and jQuery (required for Bootstrap) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+        // Função para salvar os dados editados
+        function salvarDados() {
+            // Aqui você pode adicionar a lógica para salvar os dados editados
+            // Por exemplo, pode enviar uma requisição AJAX para o servidor
+            // para atualizar os dados no backend.
+            // Após salvar os dados, você pode fechar o modal:
+            $('#editarModal').modal('hide');
+        }
+    </script>
+</body>
+</html>
