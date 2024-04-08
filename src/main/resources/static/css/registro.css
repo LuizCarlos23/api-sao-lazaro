@@ -19,6 +19,15 @@ h1{
     height: 100vh;
 }
 
+html,body{
+    background-image: url('/img/405025-svetik_1920x1080.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100%;
+    font-family: 'Numans', sans-serif;
+  }
+  
+
 .box{
     width: 320px;
     height: 600px;
