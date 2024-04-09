@@ -16,24 +16,33 @@
         <div class="box">
             <h1>Cadastro de Pets</h1>
             <form id="petForm">
-                <label for="entranceDate">Data de entrada:</label><br>
-                <input type="date" id="entranceDate" name="entranceDate" style="width: 200px; height: 30px" required><br>
+                <div class="form-group form-row" >
+                    <div class="form-group col-sm-4">
+                        <label for="entranceDate">Data de entrada:</label>
+                        <input type="date" id="entranceDate" class="form-control" name="entranceDate" required>
 
-                <label for="race">Raça:</label><br>
-                <input type="text" id="race" name="race" style="width: 200px; height: 30px" required><br>
+                    </div>                    
 
-                <label for="local">Localização:</label><br>
-                <input type="text" id="local" name="local" style="width: 200px; height: 30px" required><br>
+                    <div class="form-group col-sm-4">
+                        <label for="race">Raça:</label>
+                        <input type="text" id="race" name="race" class="form-control" required>
+                    </div>
+                    <div class="form-group col-sm-4">
+                        <label for="local">Localização:</label>
+                        <input type="text" id="local" name="local" class="form-control" required>
+                    </div>
 
-                <label for="anamnesis">Anamnese:</label><br>
-                <textarea id="anamnesis" class="form-control" name="anamnesis" style="width: 200px; height: 30px"></textarea><br>
-
-                <div class="continue-button">
-                    <input type="submit" value="Cadastrar"> 
-
-            <div class="continue-button">
-                <input type="submit" value="Cadastrar"> 
-            </div>
+                    <div class="form-row">
+                        <div class="form-group col-sm w-100">
+                            <label for="anamnesis">Anamnese:</label>
+                            <textarea id="anamnesis" name="anamnesis" class="form-control" rows="3" value=''></textarea>
+                        </div>  
+                    </div>
+                    
+                    <div class="continue-button">
+                        <input type="submit" value="Cadastrar"> 
+                    </div>
+                </div>
         </form>
     </div>
     

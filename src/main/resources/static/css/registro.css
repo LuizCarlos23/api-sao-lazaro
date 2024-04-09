@@ -20,7 +20,7 @@ h1{
 }
 
 html,body{
-    background-image: url('/img/405025-svetik_1920x1080.jpg');
+    background-image: url('../img/405025-svetik_1920x1080.jpg');
     background-size: cover;
     background-repeat: no-repeat;
     height: 100%;
@@ -29,9 +29,9 @@ html,body{
   
 
 .box{
-    width: 320px;
-    height: 600px;
-    background: rgba(0, 0, 0, 0.778);
+    width: auto;
+    height: auto;
+    background: rgba(0, 0, 0, 0.904);
     color: #fff;
     top: 50%;
     left: 50%;
