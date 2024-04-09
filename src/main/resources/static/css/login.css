@@ -1,18 +1,26 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600&family=Lato:ital,wght@0,700;1,700&display=swap');
-* {
-    padding: 0;
+body{
     margin: 0;
-    box-sizing: border-box;
-    font-family: 'Inter', sans-serif;
+    padding: 0;
+    
+    background-size: cover;
+    background-position: center center;
+    background-position-y: 0px;
+    font-family: sans-serif;
 }
 
-body {
-    width: 100%;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: #96969e;
+
+
+.box{
+    width: 320px;
+    height: 550px;
+    background: rgba(0, 0, 0, 0.778);
+    color: #fff;
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    box-sizing: border-box;
+    padding: 70px 30px;
 }
 
 .avatar{
@@ -24,19 +32,6 @@ body {
     left: calc(50% - 50px);
 }
 
-.box{
-    width: 320px;
-    height: 500px;
-    background: rgba(0, 0, 0, 0.778);
-    color: #fff;
-    top: 50%;
-    left: 50%;
-    position: absolute;
-    transform: translate(-50%, -50%);
-    box-sizing: border-box;
-    padding: 70px 30px;
-}
-
 h1{
     margin: 0;
     padding: 0 0 20px;
@@ -45,12 +40,11 @@ h1{
 }
 
 .box input{
-    margin: 0;
-    padding: 0;
-    font-weight: bold;
+    width: 100%;
+    margin-bottom: 20px;
 }
 
-.box input[type="text"], input[type="password"], input[type="checkbox"], input[type="email"]
+.box input[type="text"], input[type="password"]
 {
     border: none;
     border-bottom: 1px solid #fff;
@@ -61,22 +55,28 @@ h1{
     font-size: 16px;
 }
 
-.input-manterlogado input[type="checkbox"],
-.input-manterlogado label {
-    display: inline-block;
-    vertical-align: middle;
-}
-
-.continue-button input
+.box input[type="submit"]
 {
-    width: 90%;
     border: none;
-    background-color: rgba(0, 0, 0, 0.778);
+    outline: none;
+    height: 40px;
+    background: blue;
     color: #fff;
-    background: transparent;
-    font-size: 20px;
-    cursor: pointer;
+    font-size: 18px;
+    border-radius: 20px;
 }
 
+.box input[type="submit"]:hover
+{
+    cursor: pointer;
+    background: green;
+    color: #fff;
+}
 
+.box a:hover
+{
+    color: green;
+}
+
+a { color: inherit;}
 
