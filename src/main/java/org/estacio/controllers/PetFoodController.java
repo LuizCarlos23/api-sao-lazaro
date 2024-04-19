@@ -40,19 +40,19 @@ public class PetFoodController {
     public ResponseEntity<?> register(@RequestBody WarehousePetFoodDto petFood) {
         try {
             WarehousePetFood existingPetFood = entityManager.createQuery(
-                            "SELECT wpf FROM WarehousePetFood wpf " +
-                            "WHERE wpf.species = :species " +
-                            "AND wpf.name = :name " +
-                            "AND wpf.ageRange = :ageRange " +
-                            "AND wpf.animalSize = :animalSize", WarehousePetFood.class)
-                    .setParameter("species", petFood.getSpecies())
-                    .setParameter("name", petFood.getName())
-                    .setParameter("ageRange", petFood.getAgeRange())
-                    .setParameter("animalSize", petFood.getAnimalSize())
-                    .getResultList()
-                    .stream()
-                    .findFirst()
-                    .orElse(null);
+                    "SELECT wpf FROM WarehousePetFood wpf " +
+                    "WHERE wpf.species = :species " +
+                    "AND wpf.name = :name " +
+                    "AND wpf.ageRange = :ageRange " +
+                    "AND wpf.animalSize = :animalSize", WarehousePetFood.class)
+                .setParameter("species", petFood.getSpecies())
+                .setParameter("name", petFood.getName())
+                .setParameter("ageRange", petFood.getAgeRange())
+                .setParameter("animalSize", petFood.getAnimalSize())
+                .getResultList()
+                .stream()
+                .findFirst()
+                .orElse(null);
 
             if (existingPetFood != null) {
                 // Atualiza apenas a quantidade
@@ -123,7 +123,7 @@ public class PetFoodController {
     }
 
     // TODO: Adicionar registo na tabela de auditoria
-    @PutMapping("/baixa")
+    @PutMapping("/writeoff")
     @Transactional
     public ResponseEntity<?> removeQuantity(@RequestBody WarehousePetFoodWriteoffDto responseData) {
         try {
