@@ -1,17 +1,17 @@
 package org.estacio.entities;
 
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.estacio.enums.MedicineType;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "warehouse_medicines")
-public class WarehouseMedicine {
+@Table(name = "warehouse_foods")
+public class WarehouseFood {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -19,16 +19,11 @@ public class WarehouseMedicine {
     @Column(nullable = false)
     private String name;
 
-    @Enumerated
     @Column(nullable = false)
-    private MedicineType type;
+    private double quantity;
 
-    @Column(nullable = false)
-    private Double quantity;
-
-    public WarehouseMedicine(String name, MedicineType type, Double quantity) {
+    public WarehouseFood(String name, Double quantity) {
         this.name = name;
-        this.type = type;
         this.quantity = quantity;
     }
 }
