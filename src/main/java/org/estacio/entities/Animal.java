@@ -17,8 +17,9 @@ public class Animal {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "entrance_date")
+    @Column(name = "entrance_date", nullable = false)
     private Date entranceDate;
+    @Column(nullable = false)
     private String race;
     private String local;
     private String anamnesis;
