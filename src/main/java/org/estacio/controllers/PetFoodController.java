@@ -85,7 +85,7 @@ public class PetFoodController {
             WarehousePetFood petFoodFound = entityManager.find(WarehousePetFood.class, id);
 
             if (petFoodFound == null) {
-                return ResponseEntity.badRequest().body("Animal não encontrado");
+                return ResponseEntity.badRequest().body("Ração não encontrado");
             }
 
             WarehousePetFood dataEdited = new WarehousePetFood(id,

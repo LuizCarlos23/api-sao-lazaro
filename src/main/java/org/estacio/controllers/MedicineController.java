@@ -5,11 +5,7 @@ import jakarta.persistence.TypedQuery;
 import jakarta.transaction.Transactional;
 import org.estacio.dtos.WarehouseMedicineDto;
 import org.estacio.dtos.WarehouseMedicineWriteoffDto;
-import org.estacio.dtos.WarehousePetFoodDto;
-import org.estacio.dtos.WarehousePetFoodWriteoffDto;
 import org.estacio.entities.WarehouseMedicine;
-import org.estacio.entities.WarehouseMedicine;
-import org.estacio.entities.WarehousePetFood;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -32,7 +28,7 @@ public class MedicineController {
 
             return new ResponseEntity<>(animals, new HttpHeaders(), HttpStatus.OK);
         } catch (Exception err) {
-            System.out.println("Ocorreu um erro ao listar as rações do estoque");
+            System.out.println("Ocorreu um erro ao listar os remedios do estoque");
             System.out.println(err);
             return ResponseEntity.internalServerError().body(HttpStatus.INTERNAL_SERVER_ERROR);
         }
@@ -66,7 +62,7 @@ public class MedicineController {
 
             return new ResponseEntity<>(HttpStatus.CREATED);
         } catch (Exception err) {
-            System.out.println("Ocorreu um erro ao registrar a ração");
+            System.out.println("Ocorreu um erro ao registrar o remedio");
             System.out.println(err);
             return ResponseEntity.internalServerError().body(HttpStatus.INTERNAL_SERVER_ERROR);
         }
@@ -89,7 +85,7 @@ public class MedicineController {
             entityManager.merge(dataEdited);
             return new ResponseEntity<>(HttpStatus.OK);
         } catch (Exception err) {
-            System.out.println("Ocorreu um erro ao editar os dados da ração");
+            System.out.println("Ocorreu um erro ao editar os dados do remedio");
             System.out.println(err);
             return ResponseEntity.internalServerError().body(HttpStatus.INTERNAL_SERVER_ERROR);
         }
@@ -133,7 +129,7 @@ public class MedicineController {
             entityManager.remove(medicineFound);
             return new ResponseEntity<>(HttpStatus.OK);
         } catch (Exception err) {
-            System.out.println("Ocorreu um erro ao deletar os dados da ração do estoque");
+            System.out.println("Ocorreu um erro ao deletar os dados do remedio do estoque");
             System.out.println(err);
             return ResponseEntity.internalServerError().body(HttpStatus.INTERNAL_SERVER_ERROR);
         }

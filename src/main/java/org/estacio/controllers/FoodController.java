@@ -1,16 +1,11 @@
 package org.estacio.controllers;
 
-
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
 import jakarta.transaction.Transactional;
-import org.estacio.dtos.AnimalDto;
 import org.estacio.dtos.WarehouseFoodDto;
 import org.estacio.dtos.WarehouseFoodWriteoffDto;
-import org.estacio.dtos.WarehouseMedicineWriteoffDto;
-import org.estacio.entities.Animal;
 import org.estacio.entities.WarehouseFood;
-import org.estacio.entities.WarehouseMedicine;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -112,7 +107,7 @@ public class FoodController {
             entityManager.merge(foodFound);
             return new ResponseEntity<>(HttpStatus.OK);
         } catch (Exception err) {
-            System.out.println("Ocorreu um erro ao remover o remedio do estoque");
+            System.out.println("Ocorreu um erro ao remover o alimento do estoque");
             System.out.println(err);
             return ResponseEntity.internalServerError().body(HttpStatus.INTERNAL_SERVER_ERROR);
         }
@@ -131,7 +126,7 @@ public class FoodController {
             entityManager.remove(foodFound);
             return new ResponseEntity<>(HttpStatus.OK);
         } catch (Exception err) {
-            System.out.println("Ocorreu um erro ao deletar os dados do Alimento");
+            System.out.println("Ocorreu um erro ao deletar os dados do alimento");
             System.out.println(err);
             return ResponseEntity.internalServerError().body(HttpStatus.INTERNAL_SERVER_ERROR);
         }
