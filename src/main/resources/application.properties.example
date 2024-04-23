@@ -1,4 +1,4 @@
 spring.datasource.url=jdbc:postgresql://localhost:5432/sao_lazaro
 spring.datasource.driveClassName=org.postgresql.Driver
 spring.datasource.username=postgres
-spring.datasource.password=vf2004
+spring.datasource.password=password
