@@ -102,27 +102,6 @@ public class PetFoodController {
         }
     }
 
-    // TODO: Adicionar registo na tabela de auditoria
-    @DeleteMapping("/{id}")
-    @Transactional
-    public ResponseEntity<?> delete(@PathVariable int id) {
-        try {
-            WarehousePetFood petFoodFound = entityManager.find(WarehousePetFood.class, id);
-
-            if (petFoodFound == null) {
-                return ResponseEntity.badRequest().body("Ração não encontrada");
-            }
-
-            entityManager.remove(petFoodFound);
-            return new ResponseEntity<>(HttpStatus.OK);
-        } catch (Exception err) {
-            System.out.println("Ocorreu um erro ao deletar os dados da ração do estoque");
-            System.out.println(err);
-            return ResponseEntity.internalServerError().body(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
-
-    // TODO: Adicionar registo na tabela de auditoria
     @PutMapping("/writeoff")
     @Transactional
     public ResponseEntity<?> removeQuantity(@RequestBody WarehousePetFoodWriteoffDto responseData) {
@@ -147,4 +126,26 @@ public class PetFoodController {
             return ResponseEntity.internalServerError().body(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+    // TODO: Adicionar registo na tabela de auditoria
+    @DeleteMapping("/{id}")
+    @Transactional
+    public ResponseEntity<?> delete(@PathVariable int id) {
+        try {
+            WarehousePetFood petFoodFound = entityManager.find(WarehousePetFood.class, id);
+
+            if (petFoodFound == null) {
+                return ResponseEntity.badRequest().body("Ração não encontrada");
+            }
+
+            entityManager.remove(petFoodFound);
+            return new ResponseEntity<>(HttpStatus.OK);
+        } catch (Exception err) {
+            System.out.println("Ocorreu um erro ao deletar os dados da ração do estoque");
+            System.out.println(err);
+            return ResponseEntity.internalServerError().body(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    // TODO: Adicionar registo na tabela de auditoria
 }

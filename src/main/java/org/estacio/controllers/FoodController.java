@@ -6,6 +6,8 @@ import jakarta.persistence.TypedQuery;
 import jakarta.transaction.Transactional;
 import org.estacio.dtos.AnimalDto;
 import org.estacio.dtos.WarehouseFoodDto;
+import org.estacio.dtos.WarehouseFoodWriteoffDto;
+import org.estacio.dtos.WarehouseMedicineWriteoffDto;
 import org.estacio.entities.Animal;
 import org.estacio.entities.WarehouseFood;
 import org.estacio.entities.WarehouseMedicine;
@@ -86,6 +88,31 @@ public class FoodController {
             return new ResponseEntity<>(HttpStatus.OK);
         } catch (Exception err) {
             System.out.println("Ocorreu um erro ao editar os dados do alimento");
+            System.out.println(err);
+            return ResponseEntity.internalServerError().body(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @PutMapping("/writeoff")
+    @Transactional
+    public ResponseEntity<?> writeoff(@RequestBody WarehouseFoodWriteoffDto responseData) {
+        try {
+            if (responseData.getQuantity() <= 0) return ResponseEntity.badRequest().body("A quantidade tem que ser maior que zero");
+
+            WarehouseFood foodFound = entityManager.find(WarehouseFood.class, responseData.getId());
+
+            if (foodFound == null) {
+                return ResponseEntity.badRequest().body("Id não encontrado");
+            } else if (foodFound.getQuantity() - responseData.getQuantity() < 0) {
+                return ResponseEntity.badRequest().body("A quantiade inserida excede a quantidade em estoque");
+            }
+
+            foodFound.setQuantity(foodFound.getQuantity() - responseData.getQuantity());
+
+            entityManager.merge(foodFound);
+            return new ResponseEntity<>(HttpStatus.OK);
+        } catch (Exception err) {
+            System.out.println("Ocorreu um erro ao remover o remedio do estoque");
             System.out.println(err);
             return ResponseEntity.internalServerError().body(HttpStatus.INTERNAL_SERVER_ERROR);
         }
