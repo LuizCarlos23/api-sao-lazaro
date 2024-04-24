@@ -5,6 +5,7 @@ import jakarta.persistence.TypedQuery;
 import jakarta.transaction.Transactional;
 import org.estacio.dtos.ShoppingDto;
 import org.estacio.entities.Shopping;
+import org.estacio.entities.WarehouseFood;
 import org.estacio.entities.WarehousePetFood;
 import org.estacio.enums.ShoppingType;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -86,6 +87,51 @@ public class ShoppingController {
             return new ResponseEntity<>(HttpStatus.CREATED);
         } catch (Exception err) {
             System.out.println("Ocorreu um erro ao registrar a ração");
+            System.out.println(err);
+            return ResponseEntity.internalServerError().body(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @PostMapping("/food")
+    @Transactional
+    public ResponseEntity<?> FoodRegister(@RequestBody ShoppingDto shoppingFood) {
+        try {
+            Shopping shopping = new Shopping(
+                    ShoppingType.FOOD,
+                    null,
+                    shoppingFood.getName(),
+                    shoppingFood.getQuantity(),
+                    shoppingFood.getValue(),
+                    new Date(),
+                    null,
+                    null,
+                    null
+            );
+
+            entityManager.persist(shopping);
+
+            WarehouseFood existingFood = entityManager.createQuery(
+                            "SELECT wf FROM WarehouseFood wf " +
+                                    "WHERE wf.name = :name " , WarehouseFood.class)
+                    .setParameter("name", shoppingFood.getName())
+                    .getResultList()
+                    .stream()
+                    .findFirst()
+                    .orElse(null);
+
+            if (existingFood != null) {
+                existingFood.setQuantity(existingFood.getQuantity() + shoppingFood.getQuantity());
+                entityManager.merge(existingFood);
+            } else {
+                entityManager.persist(new WarehouseFood(
+                        shoppingFood.getName(),
+                        shoppingFood.getQuantity()
+                ));
+            }
+
+            return new ResponseEntity<>(HttpStatus.CREATED);
+        } catch (Exception err) {
+            System.out.println("Ocorreu um erro ao registrar o alimento");
             System.out.println(err);
             return ResponseEntity.internalServerError().body(HttpStatus.INTERNAL_SERVER_ERROR);
         }
