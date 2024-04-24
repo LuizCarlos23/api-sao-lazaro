@@ -41,11 +41,11 @@ public class PetFoodController {
         try {
             WarehousePetFood existingPetFood = entityManager.createQuery(
                     "SELECT wpf FROM WarehousePetFood wpf " +
-                    "WHERE wpf.species = :species " +
+                    "WHERE wpf.specie = :specie " +
                     "AND wpf.name = :name " +
                     "AND wpf.ageRange = :ageRange " +
                     "AND wpf.animalSize = :animalSize", WarehousePetFood.class)
-                .setParameter("species", petFood.getSpecies())
+                .setParameter("specie", petFood.getSpecie())
                 .setParameter("name", petFood.getName())
                 .setParameter("ageRange", petFood.getAgeRange())
                 .setParameter("animalSize", petFood.getAnimalSize())
@@ -61,7 +61,7 @@ public class PetFoodController {
             } else {
                 // Cria um novo registro
                 entityManager.persist(new WarehousePetFood(
-                        petFood.getSpecies(),
+                        petFood.getSpecie(),
                         petFood.getName(),
                         petFood.getQuantityKg(),
                         petFood.getAgeRange(),
@@ -89,7 +89,7 @@ public class PetFoodController {
             }
 
             WarehousePetFood dataEdited = new WarehousePetFood(id,
-                    petFood.getSpecies(), petFood.getName(),
+                    petFood.getSpecie(), petFood.getName(),
                     petFood.getQuantityKg(), petFood.getAgeRange(),
                     petFood.getAnimalSize());
 

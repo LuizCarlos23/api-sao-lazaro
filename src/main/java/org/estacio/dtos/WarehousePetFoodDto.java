@@ -11,7 +11,7 @@ import org.estacio.enums.Specie;
 @AllArgsConstructor
 @NoArgsConstructor
 public class WarehousePetFoodDto {
-    private Specie species;
+    private Specie specie;
     private String name;
     private Double quantityKg;
     private AgeRange ageRange;

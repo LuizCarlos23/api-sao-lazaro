@@ -22,7 +22,7 @@ public class WarehousePetFood {
 
     @Enumerated
     @Column(nullable = false)
-    private Specie species;
+    private Specie specie;
 
     @Column(nullable = false)
     private String name;
@@ -38,8 +38,8 @@ public class WarehousePetFood {
     @Column(name = "animal_size", nullable = false)
     private AnimalSize animalSize;
 
-    public WarehousePetFood(Specie species, String name, Double quantityKg, AgeRange ageRange, AnimalSize animalSize) {
-        this.species = species;
+    public WarehousePetFood(Specie specie, String name, Double quantityKg, AgeRange ageRange, AnimalSize animalSize) {
+        this.specie = specie;
         this.name = name;
         this.quantityKg = quantityKg;
         this.ageRange = ageRange;
