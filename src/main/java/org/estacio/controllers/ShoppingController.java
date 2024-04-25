@@ -4,9 +4,7 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
 import jakarta.transaction.Transactional;
 import org.estacio.dtos.ShoppingDto;
-import org.estacio.entities.Shopping;
-import org.estacio.entities.WarehouseFood;
-import org.estacio.entities.WarehousePetFood;
+import org.estacio.entities.*;
 import org.estacio.enums.ShoppingType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -94,7 +92,7 @@ public class ShoppingController {
 
     @PostMapping("/food")
     @Transactional
-    public ResponseEntity<?> FoodRegister(@RequestBody ShoppingDto shoppingFood) {
+    public ResponseEntity<?> foodRegister(@RequestBody ShoppingDto shoppingFood) {
         try {
             Shopping shopping = new Shopping(
                     ShoppingType.FOOD,
@@ -132,6 +130,99 @@ public class ShoppingController {
             return new ResponseEntity<>(HttpStatus.CREATED);
         } catch (Exception err) {
             System.out.println("Ocorreu um erro ao registrar o alimento");
+            System.out.println(err);
+            return ResponseEntity.internalServerError().body(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @PostMapping("/medicine")
+    @Transactional
+    public ResponseEntity<?> medicineRegister(@RequestBody ShoppingDto shoppingMedicine) {
+        try {
+            Shopping shopping = new Shopping(
+                    ShoppingType.MEDICINE,
+                    null,
+                    shoppingMedicine.getName(),
+                    shoppingMedicine.getQuantity(),
+                    shoppingMedicine.getValue(),
+                    new Date(),
+                    null,
+                    null,
+                    shoppingMedicine.getMedicineType()
+            );
+
+            entityManager.persist(shopping);
+
+            WarehouseMedicine existingMedicine = entityManager.createQuery(
+                            "SELECT wm FROM WarehouseMedicine wm " +
+                                    "WHERE wm.name = :name " +
+                                    "AND wm.type = :type", WarehouseMedicine.class)
+                    .setParameter("name", shoppingMedicine.getName())
+                    .setParameter("type", shoppingMedicine.getMedicineType())
+                    .getResultList()
+                    .stream()
+                    .findFirst()
+                    .orElse(null);
+
+            if (existingMedicine != null) {
+                existingMedicine.setQuantity(existingMedicine.getQuantity() + shoppingMedicine.getQuantity());
+                entityManager.merge(existingMedicine);
+            } else {
+                entityManager.persist(new WarehouseMedicine(
+                        shoppingMedicine.getName(),
+                        shoppingMedicine.getMedicineType(),
+                        shoppingMedicine.getQuantity()
+                ));
+            }
+
+            return new ResponseEntity<>(HttpStatus.CREATED);
+        } catch (Exception err) {
+            System.out.println("Ocorreu um erro ao registrar o medicamento");
+            System.out.println(err);
+            return ResponseEntity.internalServerError().body(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @PostMapping("/cleaning_material")
+    @Transactional
+    public ResponseEntity<?> cleaningMaterialRegister(@RequestBody ShoppingDto shoppingCleaningMaterial) {
+        try {
+            Shopping shopping = new Shopping(
+                    ShoppingType.CLEANING_MATERIAL,
+                    null,
+                    shoppingCleaningMaterial.getName(),
+                    shoppingCleaningMaterial.getQuantity(),
+                    shoppingCleaningMaterial.getValue(),
+                    new Date(),
+                    null,
+                    null,
+                    null
+            );
+
+            entityManager.persist(shopping);
+
+            WarehouseCleaningMaterial existingCleaningMaterial = entityManager.createQuery(
+                            "SELECT wcm FROM WarehouseCleaningMaterial wcm " +
+                                    "WHERE wcm.name = :name", WarehouseCleaningMaterial.class)
+                    .setParameter("name", shoppingCleaningMaterial.getName())
+                    .getResultList()
+                    .stream()
+                    .findFirst()
+                    .orElse(null);
+
+            if (existingCleaningMaterial != null) {
+                existingCleaningMaterial.setQuantity(existingCleaningMaterial.getQuantity() + shoppingCleaningMaterial.getQuantity());
+                entityManager.merge(existingCleaningMaterial);
+            } else {
+                entityManager.persist(new WarehouseCleaningMaterial(
+                        shoppingCleaningMaterial.getName(),
+                        shoppingCleaningMaterial.getQuantity()
+                ));
+            }
+
+            return new ResponseEntity<>(HttpStatus.CREATED);
+        } catch (Exception err) {
+            System.out.println("Ocorreu um erro ao registrar o material de limpeza");
             System.out.println(err);
             return ResponseEntity.internalServerError().body(HttpStatus.INTERNAL_SERVER_ERROR);
         }
