@@ -16,35 +16,39 @@
         <div class="box">
             <h1>Cadastro de Pets</h1>
             <form id="petForm">
-                <div class="form-group form-row" >
-                    <div class="form-group col-sm-4">
-                        <label for="entranceDate">Data de entrada:</label>
+                <div class="form-group form-row">
+
+                    <div class="form-group col-sm-4 p-1">
+                        <label for="entranceDate" style="white-space: nowrap;">Data de entrada:</label>
                         <input type="date" id="entranceDate" class="form-control" name="entranceDate" required>
 
                     </div>                    
 
-                    <div class="form-group col-sm-4">
+                    <div class="form-group col-sm-4 p-1">
                         <label for="race">Raça:</label>
                         <input type="text" id="race" name="race" class="form-control" required>
                     </div>
-                    <div class="form-group col-sm-4">
+
+                    <div class="form-group col-sm-4 p-1">
                         <label for="local">Localização:</label>
                         <input type="text" id="local" name="local" class="form-control" required>
                     </div>
 
-                    <div class="form-row">
-                        <div class="form-group col-sm w-100">
-                            <label for="anamnesis">Anamnese:</label>
-                            <textarea id="anamnesis" name="anamnesis" class="form-control" rows="3" value=''></textarea>
-                        </div>  
+                    <div class="form-group col-sm p-1">
+                        <label for="anamnesis">Anamnese:</label>
+                        <textarea id="anamnesis" name="anamnesis" class="form-control" rows="3" value=''></textarea>
+                    </div>  
+
+                    <div class="form-group p-1">
+                        <label for="" style="color: transparent; margin-top: 20px;">...</label> 
+                        <button type="submit" id="cadastrar" class="btn form-control col-sm btn-primary">Cadastrar</button>
                     </div>
-                    
-                    <div class="continue-button">
-                        <input type="submit" value="Cadastrar"> 
-                    </div>
+
                 </div>
-        </form>
-    </div>
+
+            </form>
+
+        </div>
     
     <!--<button type="button" class="btn btn-success" data-toggle="modal" data-target="#editarModal">
         Editar Dados
@@ -64,6 +68,7 @@
 
         </div>
     </div>-->
+    </div>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
@@ -80,4 +85,5 @@
         }
     </script>
 </body>  
+
 </html>
