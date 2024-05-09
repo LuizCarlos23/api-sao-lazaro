@@ -5,8 +5,10 @@ import jakarta.persistence.TypedQuery;
 import jakarta.transaction.Transactional;
 import org.estacio.dtos.AdopteAnimalDto;
 import org.estacio.dtos.AnimalDto;
+import org.estacio.dtos.DeceasedDto;
 import org.estacio.entities.AdoptedAnimal;
 import org.estacio.entities.AnimalInShelter;
+import org.estacio.entities.DeceasedAnimal;
 import org.estacio.entities.RegisteredAnimal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -38,6 +40,51 @@ public class AnimalController {
         }
     }
 
+    @GetMapping("/shelter")
+    public ResponseEntity<?> listAnimalsInShelter() {
+        try {
+            String jpql = "select A from AnimalInShelter A";
+            TypedQuery<AnimalInShelter> query = entityManager.createQuery(jpql, AnimalInShelter.class);
+            List<AnimalInShelter> animals = query.getResultList();
+
+            return new ResponseEntity<>(animals, new HttpHeaders(), HttpStatus.OK);
+        } catch (Exception err) {
+            System.out.println("Ocorreu um erro ao listar os animais");
+            System.out.println(err);
+            return ResponseEntity.internalServerError().body(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @GetMapping("/deceaseds")
+        public ResponseEntity<?> listDeceasedAnimals() {
+        try {
+            String jpql = "select D from DeceasedAnimal D";
+            TypedQuery<DeceasedAnimal> query = entityManager.createQuery(jpql, DeceasedAnimal.class);
+            List<DeceasedAnimal> animals = query.getResultList();
+
+            return new ResponseEntity<>(animals, new HttpHeaders(), HttpStatus.OK);
+        } catch (Exception err) {
+            System.out.println("Ocorreu um erro ao listar os animais");
+            System.out.println(err);
+            return ResponseEntity.internalServerError().body(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @GetMapping("/adopteds")
+    public ResponseEntity<?> listAdoptedAnimals() {
+        try {
+            String jpql = "select A from AdoptedAnimal A";
+            TypedQuery<AdoptedAnimal> query = entityManager.createQuery(jpql, AdoptedAnimal.class);
+            List<AdoptedAnimal> animals = query.getResultList();
+
+            return new ResponseEntity<>(animals, new HttpHeaders(), HttpStatus.OK);
+        } catch (Exception err) {
+            System.out.println("Ocorreu um erro ao listar os animais");
+            System.out.println(err);
+            return ResponseEntity.internalServerError().body(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
     @PostMapping("/adopte")
     @Transactional
     public ResponseEntity<?> adopte(@RequestBody AdopteAnimalDto adoptedData) {
@@ -57,6 +104,33 @@ public class AnimalController {
             entityManager.remove(shelter);
             entityManager.persist(new AdoptedAnimal(shelter.getRegisteredAnimal(), new Date(), adoptedData.getAdopterName(),
                     adoptedData.getAdopterNumber(), adoptedData.getAdopterCpf()));
+
+            return new ResponseEntity<>(HttpStatus.CREATED);
+        } catch (Exception err) {
+            System.out.println("Ocorreu um erro ao registrar a adoção do animal");
+            System.out.println(err);
+            return ResponseEntity.internalServerError().body(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @PostMapping("/decease")
+    @Transactional
+    public ResponseEntity<?> deceased(@RequestBody DeceasedDto deceasedAnimal) {
+        try {
+            AnimalInShelter shelter = entityManager.createQuery("select A FROM AnimalInShelter A " +
+                            "WHERE A.registeredAnimal.id = :id", AnimalInShelter.class)
+                    .setParameter("id", deceasedAnimal.getId())
+                    .getResultList()
+                    .stream()
+                    .findFirst()
+                    .orElse(null);
+
+            if (shelter == null) {
+                return ResponseEntity.badRequest().body("Animal não encontrado");
+            }
+
+            entityManager.remove(shelter);
+            entityManager.persist(new DeceasedAnimal(shelter.getRegisteredAnimal(), deceasedAnimal.getReason(), new Date()));
 
             return new ResponseEntity<>(HttpStatus.CREATED);
         } catch (Exception err) {

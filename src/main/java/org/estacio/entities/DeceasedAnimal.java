@@ -5,12 +5,14 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.util.Date;
+
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "animals_in_shelters")
-public class AnimalInShelter {
+@Table(name = "deceased_animals")
+public class DeceasedAnimal {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -19,10 +21,13 @@ public class AnimalInShelter {
     @JoinColumn(name = "registered_animal_id", referencedColumnName = "id")
     private RegisteredAnimal registeredAnimal;
 
-    private String location;
+    private String reason;
 
-    public AnimalInShelter(String location, RegisteredAnimal animal) {
-        this.location = location;
-        this.registeredAnimal = animal;
+    private Date date;
+
+    public DeceasedAnimal(RegisteredAnimal registeredAnimal, String reason, Date date) {
+        this.registeredAnimal = registeredAnimal;
+        this.reason = reason;
+        this.date = date;
     }
 }
