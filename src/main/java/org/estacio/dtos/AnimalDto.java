@@ -12,6 +12,6 @@ import java.util.Date;
 public class AnimalDto {
     private Date entranceDate;
     private String race;
-    private String local;
+    private String location;
     private String anamnesis;
 }

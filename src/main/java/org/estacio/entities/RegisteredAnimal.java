@@ -11,23 +11,22 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "animals")
-public class Animal {
+@Table(name = "registered_animals")
+public class RegisteredAnimal {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "entrance_date", nullable = false)
-    private Date entranceDate;
+    @Column(name = "entry_date", nullable = false)
+    private Date entryDate;
+
     @Column(nullable = false)
     private String race;
-    private String local;
     private String anamnesis;
 
-    public Animal(Date entranceDate, String race, String local, String anamnesis) {
-        this.entranceDate = entranceDate;
+    public RegisteredAnimal(Date entryDate, String race, String anamnesis) {
+        this.entryDate = entryDate;
         this.race = race;
-        this.local = local;
         this.anamnesis = anamnesis;
     }
 }
