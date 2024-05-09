@@ -32,7 +32,7 @@ public class GeneralDonationController {
 
             return new ResponseEntity<>(shopping, new HttpHeaders(), HttpStatus.OK);
         } catch (Exception err) {
-            System.out.println("Ocorreu um erro ao listar as compras");
+            System.out.println("Ocorreu um erro ao listar as doações");
             System.out.println(err);
             return ResponseEntity.internalServerError().body(HttpStatus.INTERNAL_SERVER_ERROR);
         }
