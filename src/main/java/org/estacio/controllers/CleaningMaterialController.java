@@ -6,6 +6,7 @@ import jakarta.transaction.Transactional;
 import org.estacio.dtos.WarehouseCleaningMaterialDto;
 import org.estacio.dtos.WarehouseCleaningMaterialWriteoffDto;
 import org.estacio.entities.WarehouseCleaningMaterial;
+import org.estacio.repositories.CleaningMaterialRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -20,6 +21,8 @@ public class CleaningMaterialController {
 
     @Autowired
     private EntityManager entityManager;
+    @Autowired
+    private CleaningMaterialRepository cleaningMaterialRepository;
 
     @GetMapping("/")
     public ResponseEntity<?> list () {
@@ -40,25 +43,9 @@ public class CleaningMaterialController {
     @Transactional
     public ResponseEntity<?> register (@RequestBody WarehouseCleaningMaterialDto cleaningMaterial) {
         try {
-            WarehouseCleaningMaterial existingCleaningMaterial = entityManager.createQuery(
-                            "SELECT wcm FROM WarehouseCleaningMaterial wcm " +
-                                    "WHERE wcm.name = :name ", WarehouseCleaningMaterial.class)
-                    .setParameter("name", cleaningMaterial.getName())
-                    .getResultList()
-                    .stream()
-                    .findFirst()
-                    .orElse(null);
-
-            if (existingCleaningMaterial != null) {
-                existingCleaningMaterial.setQuantity(existingCleaningMaterial.getQuantity() + cleaningMaterial.getQuantity());
-                entityManager.merge(existingCleaningMaterial);
-            } else {
-                entityManager.persist(new WarehouseCleaningMaterial(
-                        cleaningMaterial.getName(),
-                        cleaningMaterial.getQuantity()
-                ));
+            if (!cleaningMaterialRepository.addMaterial(cleaningMaterial)) {
+                return ResponseEntity.badRequest().body("Ocorreu um erro ao adicionar o material");
             }
-
             return new ResponseEntity<>(HttpStatus.CREATED);
         } catch (Exception err) {
             System.out.println("Ocorreu um erro ao registrar o material de limpeza");
@@ -71,7 +58,7 @@ public class CleaningMaterialController {
     @Transactional
     public ResponseEntity<?> edit(@PathVariable int id, @RequestBody WarehouseCleaningMaterialDto cleaningMaterialData) {
         try {
-            WarehouseCleaningMaterial cleaningMaterialFound = entityManager.find(WarehouseCleaningMaterial.class, id);
+            WarehouseCleaningMaterial cleaningMaterialFound = cleaningMaterialRepository.getById(id);
 
             if (cleaningMaterialFound == null) {
                 return ResponseEntity.badRequest().body("Material de limpeza não encontrado");
@@ -94,7 +81,7 @@ public class CleaningMaterialController {
         try {
             if (responseData.getQuantity() <= 0) return ResponseEntity.badRequest().body("A quantidade tem que ser maior que zero");
 
-            WarehouseCleaningMaterial cleaningMaterialFound = entityManager.find(WarehouseCleaningMaterial.class, responseData.getId());
+            WarehouseCleaningMaterial cleaningMaterialFound = cleaningMaterialRepository.getById(responseData.getId());
 
             if (cleaningMaterialFound == null) {
                 return ResponseEntity.badRequest().body("Id não encontrado");
@@ -117,7 +104,7 @@ public class CleaningMaterialController {
     @Transactional
     public ResponseEntity<?> delete(@PathVariable int id) {
         try {
-            WarehouseCleaningMaterial cleaningMaterialFound = entityManager.find(WarehouseCleaningMaterial.class, id);
+            WarehouseCleaningMaterial cleaningMaterialFound = cleaningMaterialRepository.getById(id);
 
             if (cleaningMaterialFound == null) {
                 return ResponseEntity.badRequest().body("Material de limpeza não encontrado");

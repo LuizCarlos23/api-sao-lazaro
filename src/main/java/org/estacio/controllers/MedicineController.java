@@ -6,6 +6,7 @@ import jakarta.transaction.Transactional;
 import org.estacio.dtos.WarehouseMedicineDto;
 import org.estacio.dtos.WarehouseMedicineWriteoffDto;
 import org.estacio.entities.WarehouseMedicine;
+import org.estacio.repositories.MedicineRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -19,6 +20,9 @@ import java.util.List;
 public class MedicineController {
     @Autowired
     private EntityManager entityManager;
+    @Autowired
+    private MedicineRepository medicineRepository;
+
     @GetMapping("/")
     public ResponseEntity<?> list() {
         try {
@@ -38,16 +42,7 @@ public class MedicineController {
     @Transactional
     public ResponseEntity<?> register(@RequestBody WarehouseMedicineDto medicine) {
         try {
-            WarehouseMedicine existingMedicine = entityManager.createQuery(
-                    "SELECT wm FROM WarehouseMedicine wm " +
-                    "WHERE wm.name = :name " +
-                    "AND wm.type = :type ", WarehouseMedicine.class)
-                .setParameter("name", medicine.getName())
-                .setParameter("type", medicine.getType())
-                .getResultList()
-                .stream()
-                .findFirst()
-                .orElse(null);
+            WarehouseMedicine existingMedicine = medicineRepository.getByNameAndType(medicine.getName(), medicine.getType());
 
             if (existingMedicine != null) {
                 existingMedicine.setQuantity(existingMedicine.getQuantity() + medicine.getQuantity());
@@ -72,7 +67,7 @@ public class MedicineController {
     @Transactional
     public ResponseEntity<?> edit(@PathVariable int id, @RequestBody WarehouseMedicineDto medicine) {
         try {
-            WarehouseMedicine medicineFound = entityManager.find(WarehouseMedicine.class, id);
+            WarehouseMedicine medicineFound = medicineRepository.getById(id);
 
             if (medicineFound == null) {
                 return ResponseEntity.badRequest().body("Remédio não encontrado");
@@ -120,7 +115,7 @@ public class MedicineController {
     @Transactional
     public ResponseEntity<?> delete(@PathVariable int id) {
         try {
-            WarehouseMedicine medicineFound = entityManager.find(WarehouseMedicine.class, id);
+            WarehouseMedicine medicineFound = medicineRepository.getById(id);
 
             if (medicineFound == null) {
                 return ResponseEntity.badRequest().body("Remédio não encontrado");

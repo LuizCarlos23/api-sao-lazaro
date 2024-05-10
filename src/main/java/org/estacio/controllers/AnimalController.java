@@ -10,6 +10,7 @@ import org.estacio.entities.AdoptedAnimal;
 import org.estacio.entities.AnimalInShelter;
 import org.estacio.entities.DeceasedAnimal;
 import org.estacio.entities.RegisteredAnimal;
+import org.estacio.repositories.AnimalInShelterRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -24,6 +25,8 @@ import java.util.List;
 public class AnimalController {
     @Autowired
     private EntityManager entityManager;
+    @Autowired
+    private AnimalInShelterRepository animalInShelterRepository;
 
     @GetMapping("/")
     public ResponseEntity<?> list() {
@@ -56,7 +59,7 @@ public class AnimalController {
     }
 
     @GetMapping("/deceaseds")
-        public ResponseEntity<?> listDeceasedAnimals() {
+    public ResponseEntity<?> listDeceasedAnimals() {
         try {
             String jpql = "select D from DeceasedAnimal D";
             TypedQuery<DeceasedAnimal> query = entityManager.createQuery(jpql, DeceasedAnimal.class);
@@ -89,13 +92,7 @@ public class AnimalController {
     @Transactional
     public ResponseEntity<?> adopte(@RequestBody AdopteAnimalDto adoptedData) {
         try {
-            AnimalInShelter shelter = entityManager.createQuery("select A FROM AnimalInShelter A " +
-                            "WHERE A.registeredAnimal.id = :id", AnimalInShelter.class)
-                    .setParameter("id", adoptedData.getId())
-                    .getResultList()
-                    .stream()
-                    .findFirst()
-                    .orElse(null);
+            AnimalInShelter shelter = animalInShelterRepository.getByAnimalId(adoptedData.getId());
 
             if (shelter == null) {
                 return ResponseEntity.badRequest().body("Animal não encontrado");
@@ -117,13 +114,7 @@ public class AnimalController {
     @Transactional
     public ResponseEntity<?> deceased(@RequestBody DeceasedDto deceasedAnimal) {
         try {
-            AnimalInShelter shelter = entityManager.createQuery("select A FROM AnimalInShelter A " +
-                            "WHERE A.registeredAnimal.id = :id", AnimalInShelter.class)
-                    .setParameter("id", deceasedAnimal.getId())
-                    .getResultList()
-                    .stream()
-                    .findFirst()
-                    .orElse(null);
+            AnimalInShelter shelter = animalInShelterRepository.getByAnimalId(deceasedAnimal.getId());
 
             if (shelter == null) {
                 return ResponseEntity.badRequest().body("Animal não encontrado");
@@ -176,8 +167,6 @@ public class AnimalController {
         }
     }
 
-    // TODO: Metodo de teste. Os dados do animal não devem ser deletados, ele é
-    //  apenas movido para outra tabela (de obito ou doação)
     @DeleteMapping("/{id}")
     @Transactional
     public ResponseEntity<?> delete(@PathVariable int id) {

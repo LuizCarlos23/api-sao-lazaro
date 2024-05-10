@@ -6,6 +6,7 @@ import jakarta.transaction.Transactional;
 import org.estacio.dtos.WarehousePetFoodDto;
 import org.estacio.dtos.WarehousePetFoodWriteoffDto;
 import org.estacio.entities.WarehousePetFood;
+import org.estacio.repositories.PetFoodRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -20,6 +21,9 @@ public class PetFoodController {
 
     @Autowired
     private EntityManager entityManager;
+    @Autowired
+    private PetFoodRepository petFoodRepository;
+
     @GetMapping("/")
     public ResponseEntity<?> list() {
         try {
@@ -39,20 +43,7 @@ public class PetFoodController {
     @Transactional
     public ResponseEntity<?> register(@RequestBody WarehousePetFoodDto petFood) {
         try {
-            WarehousePetFood existingPetFood = entityManager.createQuery(
-                    "SELECT wpf FROM WarehousePetFood wpf " +
-                    "WHERE wpf.specie = :specie " +
-                    "AND wpf.name = :name " +
-                    "AND wpf.ageRange = :ageRange " +
-                    "AND wpf.animalSize = :animalSize", WarehousePetFood.class)
-                .setParameter("specie", petFood.getSpecie())
-                .setParameter("name", petFood.getName())
-                .setParameter("ageRange", petFood.getAgeRange())
-                .setParameter("animalSize", petFood.getAnimalSize())
-                .getResultList()
-                .stream()
-                .findFirst()
-                .orElse(null);
+            WarehousePetFood existingPetFood = petFoodRepository.getByPetFood(petFood);
 
             if (existingPetFood != null) {
                 // Atualiza apenas a quantidade
@@ -77,12 +68,11 @@ public class PetFoodController {
         }
     }
 
-    // TODO: Adicionar registo na tabela de auditoria
     @PutMapping("/{id}")
     @Transactional
     public ResponseEntity<?> edit(@PathVariable int id, @RequestBody WarehousePetFoodDto petFood) {
         try {
-            WarehousePetFood petFoodFound = entityManager.find(WarehousePetFood.class, id);
+            WarehousePetFood petFoodFound = petFoodRepository.getById(id);
 
             if (petFoodFound == null) {
                 return ResponseEntity.badRequest().body("Ração não encontrado");
@@ -127,7 +117,6 @@ public class PetFoodController {
         }
     }
 
-    // TODO: Adicionar registo na tabela de auditoria
     @DeleteMapping("/{id}")
     @Transactional
     public ResponseEntity<?> delete(@PathVariable int id) {
@@ -146,6 +135,4 @@ public class PetFoodController {
             return ResponseEntity.internalServerError().body(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-
-    // TODO: Adicionar registo na tabela de auditoria
 }

@@ -5,9 +5,14 @@ import jakarta.persistence.TypedQuery;
 import jakarta.transaction.Transactional;
 import org.estacio.dtos.GeneralDonationDto;
 import org.estacio.dtos.ShoppingDto;
+import org.estacio.dtos.WarehousePetFoodDto;
 import org.estacio.entities.*;
 import org.estacio.enums.GeneralDonationType;
 import org.estacio.enums.ShoppingType;
+import org.estacio.repositories.CleaningMaterialRepository;
+import org.estacio.repositories.FoodRepository;
+import org.estacio.repositories.MedicineRepository;
+import org.estacio.repositories.PetFoodRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -23,6 +28,19 @@ public class GeneralDonationController {
 
     @Autowired
     private EntityManager entityManager;
+
+    @Autowired
+    private FoodRepository foodRepository;
+
+    @Autowired
+    private PetFoodRepository petFoodRepository;
+    @Autowired
+    private CleaningMaterialRepository cleaningMaterialRepository;
+
+    @Autowired
+    private MedicineRepository medicineRepository;
+
+
     @GetMapping("/")
     public ResponseEntity<?> list() { // TODO: adicionar filtro
         try {
@@ -47,7 +65,7 @@ public class GeneralDonationController {
                     donatedPetFood.getPetfoodSpecie(),
                     donatedPetFood.getName(),
                     donatedPetFood.getQuantity(),
-                    new Date(), // TODO: ajustar formato
+                    new Date(),
                     donatedPetFood.getPetfoodAnimalSize(),
                     donatedPetFood.getPetfoodAgeRange(),
                     null
@@ -55,20 +73,10 @@ public class GeneralDonationController {
 
             entityManager.persist(donation);
 
-            WarehousePetFood existingPetFood = entityManager.createQuery(
-                    "SELECT wpf FROM WarehousePetFood wpf " +
-                    "WHERE wpf.specie = :specie " +
-                    "AND wpf.name = :name " +
-                    "AND wpf.ageRange = :ageRange " +
-                    "AND wpf.animalSize = :animalSize", WarehousePetFood.class)
-                .setParameter("specie", donatedPetFood.getPetfoodSpecie())
-                .setParameter("name", donatedPetFood.getName())
-                .setParameter("ageRange", donatedPetFood.getPetfoodAgeRange())
-                .setParameter("animalSize", donatedPetFood.getPetfoodAnimalSize())
-                .getResultList()
-                .stream()
-                .findFirst()
-                .orElse(null);
+
+            WarehousePetFood existingPetFood = petFoodRepository.getByPetFood(new WarehousePetFoodDto(
+                    donatedPetFood.getPetfoodSpecie(), donatedPetFood.getName(), null,
+                    donatedPetFood.getPetfoodAgeRange(), donatedPetFood.getPetfoodAnimalSize()));
 
             if (existingPetFood != null) {
                 existingPetFood.setQuantityKg(existingPetFood.getQuantityKg() + donatedPetFood.getQuantity());
@@ -108,14 +116,7 @@ public class GeneralDonationController {
 
             entityManager.persist(shopping);
 
-            WarehouseFood existingFood = entityManager.createQuery(
-                            "SELECT wf FROM WarehouseFood wf " +
-                                    "WHERE wf.name = :name " , WarehouseFood.class)
-                    .setParameter("name", donatedFood.getName())
-                    .getResultList()
-                    .stream()
-                    .findFirst()
-                    .orElse(null);
+            WarehouseFood existingFood = foodRepository.getByName(donatedFood.getName());
 
             if (existingFood != null) {
                 existingFood.setQuantity(existingFood.getQuantity() + donatedFood.getQuantity());
@@ -152,16 +153,7 @@ public class GeneralDonationController {
 
             entityManager.persist(donation);
 
-            WarehouseMedicine existingMedicine = entityManager.createQuery(
-                            "SELECT wm FROM WarehouseMedicine wm " +
-                                    "WHERE wm.name = :name " +
-                                    "AND wm.type = :type", WarehouseMedicine.class)
-                    .setParameter("name", donatedMedicine.getName())
-                    .setParameter("type", donatedMedicine.getMedicineType())
-                    .getResultList()
-                    .stream()
-                    .findFirst()
-                    .orElse(null);
+            WarehouseMedicine existingMedicine = medicineRepository.getByNameAndType(donatedMedicine.getName(), donatedMedicine.getMedicineType());
 
             if (existingMedicine != null) {
                 existingMedicine.setQuantity(existingMedicine.getQuantity() + donatedMedicine.getQuantity());
@@ -199,14 +191,8 @@ public class GeneralDonationController {
 
             entityManager.persist(donation);
 
-            WarehouseCleaningMaterial existingCleaningMaterial = entityManager.createQuery(
-                            "SELECT wcm FROM WarehouseCleaningMaterial wcm " +
-                                    "WHERE wcm.name = :name", WarehouseCleaningMaterial.class)
-                    .setParameter("name", donatedCleaningMaterial.getName())
-                    .getResultList()
-                    .stream()
-                    .findFirst()
-                    .orElse(null);
+            WarehouseCleaningMaterial existingCleaningMaterial = cleaningMaterialRepository.getByName(
+                    donatedCleaningMaterial.getName());
 
             if (existingCleaningMaterial != null) {
                 existingCleaningMaterial.setQuantity(existingCleaningMaterial.getQuantity() + donatedCleaningMaterial.getQuantity());

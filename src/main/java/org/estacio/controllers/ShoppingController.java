@@ -4,8 +4,13 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
 import jakarta.transaction.Transactional;
 import org.estacio.dtos.ShoppingDto;
+import org.estacio.dtos.WarehousePetFoodDto;
 import org.estacio.entities.*;
 import org.estacio.enums.ShoppingType;
+import org.estacio.repositories.CleaningMaterialRepository;
+import org.estacio.repositories.FoodRepository;
+import org.estacio.repositories.MedicineRepository;
+import org.estacio.repositories.PetFoodRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -21,6 +26,16 @@ public class ShoppingController {
 
     @Autowired
     private EntityManager entityManager;
+
+    @Autowired
+    private FoodRepository foodRepository;
+    @Autowired
+    private PetFoodRepository petFoodRepository;
+    @Autowired
+    private CleaningMaterialRepository cleaningMaterialRepository;
+    @Autowired
+    private MedicineRepository medicineRepository;
+
     @GetMapping("/")
     public ResponseEntity<?> list() { // TODO: adicionar filtro
         try {
@@ -54,20 +69,9 @@ public class ShoppingController {
 
             entityManager.persist(shopping);
 
-            WarehousePetFood existingPetFood = entityManager.createQuery(
-                    "SELECT wpf FROM WarehousePetFood wpf " +
-                    "WHERE wpf.specie = :specie " +
-                    "AND wpf.name = :name " +
-                    "AND wpf.ageRange = :ageRange " +
-                    "AND wpf.animalSize = :animalSize", WarehousePetFood.class)
-                .setParameter("specie", shoppingPetFood.getPetfoodSpecie())
-                .setParameter("name", shoppingPetFood.getName())
-                .setParameter("ageRange", shoppingPetFood.getPetfoodAgeRange())
-                .setParameter("animalSize", shoppingPetFood.getPetfoodAnimalSize())
-                .getResultList()
-                .stream()
-                .findFirst()
-                .orElse(null);
+            WarehousePetFood existingPetFood = petFoodRepository.getByPetFood(new WarehousePetFoodDto(
+                    shoppingPetFood.getPetfoodSpecie(), shoppingPetFood.getName(), null,
+                    shoppingPetFood.getPetfoodAgeRange(), shoppingPetFood.getPetfoodAnimalSize()));
 
             if (existingPetFood != null) {
                 existingPetFood.setQuantityKg(existingPetFood.getQuantityKg() + shoppingPetFood.getQuantity());
@@ -108,14 +112,7 @@ public class ShoppingController {
 
             entityManager.persist(shopping);
 
-            WarehouseFood existingFood = entityManager.createQuery(
-                            "SELECT wf FROM WarehouseFood wf " +
-                                    "WHERE wf.name = :name " , WarehouseFood.class)
-                    .setParameter("name", shoppingFood.getName())
-                    .getResultList()
-                    .stream()
-                    .findFirst()
-                    .orElse(null);
+            WarehouseFood existingFood = foodRepository.getByName(shoppingFood.getName());
 
             if (existingFood != null) {
                 existingFood.setQuantity(existingFood.getQuantity() + shoppingFood.getQuantity());
@@ -153,16 +150,9 @@ public class ShoppingController {
 
             entityManager.persist(shopping);
 
-            WarehouseMedicine existingMedicine = entityManager.createQuery(
-                            "SELECT wm FROM WarehouseMedicine wm " +
-                                    "WHERE wm.name = :name " +
-                                    "AND wm.type = :type", WarehouseMedicine.class)
-                    .setParameter("name", shoppingMedicine.getName())
-                    .setParameter("type", shoppingMedicine.getMedicineType())
-                    .getResultList()
-                    .stream()
-                    .findFirst()
-                    .orElse(null);
+            WarehouseMedicine existingMedicine = medicineRepository.getByNameAndType(
+                    shoppingMedicine.getName(), shoppingMedicine.getMedicineType());
+
 
             if (existingMedicine != null) {
                 existingMedicine.setQuantity(existingMedicine.getQuantity() + shoppingMedicine.getQuantity());
@@ -201,14 +191,8 @@ public class ShoppingController {
 
             entityManager.persist(shopping);
 
-            WarehouseCleaningMaterial existingCleaningMaterial = entityManager.createQuery(
-                            "SELECT wcm FROM WarehouseCleaningMaterial wcm " +
-                                    "WHERE wcm.name = :name", WarehouseCleaningMaterial.class)
-                    .setParameter("name", shoppingCleaningMaterial.getName())
-                    .getResultList()
-                    .stream()
-                    .findFirst()
-                    .orElse(null);
+            WarehouseCleaningMaterial existingCleaningMaterial = cleaningMaterialRepository.getByName(
+                    shoppingCleaningMaterial.getName());
 
             if (existingCleaningMaterial != null) {
                 existingCleaningMaterial.setQuantity(existingCleaningMaterial.getQuantity() + shoppingCleaningMaterial.getQuantity());

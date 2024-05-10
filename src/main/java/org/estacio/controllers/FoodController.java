@@ -6,6 +6,7 @@ import jakarta.transaction.Transactional;
 import org.estacio.dtos.WarehouseFoodDto;
 import org.estacio.dtos.WarehouseFoodWriteoffDto;
 import org.estacio.entities.WarehouseFood;
+import org.estacio.repositories.FoodRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -20,6 +21,9 @@ public class FoodController {
 
     @Autowired
     private EntityManager entityManager;
+
+    @Autowired
+    private FoodRepository foodRepository;
 
     @GetMapping ("/")
     public ResponseEntity<?> list () {
@@ -71,7 +75,7 @@ public class FoodController {
     @Transactional
     public ResponseEntity<?> edit(@PathVariable int id, @RequestBody WarehouseFoodDto foodData) {
         try {
-            WarehouseFood foodFound = entityManager.find(WarehouseFood.class, id);
+            WarehouseFood foodFound = foodRepository.getById(id);
 
             if (foodFound == null) {
                 return ResponseEntity.badRequest().body("Alimento não encontrado");
@@ -117,7 +121,7 @@ public class FoodController {
     @Transactional
     public ResponseEntity<?> delete(@PathVariable int id) {
         try {
-            WarehouseFood foodFound = entityManager.find(WarehouseFood.class, id);
+            WarehouseFood foodFound = foodRepository.getById(id);
 
             if (foodFound == null) {
                 return ResponseEntity.badRequest().body("Alimento não encontrado");
