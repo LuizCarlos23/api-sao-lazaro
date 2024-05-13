@@ -39,34 +39,32 @@ public class PetFoodController {
         }
     }
 
-    @PostMapping("/")
-    @Transactional
-    public ResponseEntity<?> register(@RequestBody WarehousePetFoodDto petFood) {
-        try {
-            WarehousePetFood existingPetFood = petFoodRepository.getByPetFood(petFood);
-
-            if (existingPetFood != null) {
-                // Atualiza apenas a quantidade
-                existingPetFood.setQuantityKg(existingPetFood.getQuantityKg() + petFood.getQuantityKg());
-                entityManager.merge(existingPetFood);
-            } else {
-                // Cria um novo registro
-                entityManager.persist(new WarehousePetFood(
-                        petFood.getSpecie(),
-                        petFood.getName(),
-                        petFood.getQuantityKg(),
-                        petFood.getAgeRange(),
-                        petFood.getAnimalSize()
-                ));
-            }
-
-            return new ResponseEntity<>(HttpStatus.CREATED);
-        } catch (Exception err) {
-            System.out.println("Ocorreu um erro ao registrar a ração");
-            System.out.println(err);
-            return ResponseEntity.internalServerError().body(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
+//    @PostMapping("/")
+//    @Transactional
+//    public ResponseEntity<?> register(@RequestBody WarehousePetFoodDto petFood) {
+//        try {
+//            WarehousePetFood existingPetFood = petFoodRepository.getByPetFood(petFood);
+//
+//            if (existingPetFood != null) {
+//                existingPetFood.setQuantityKg(existingPetFood.getQuantityKg() + petFood.getQuantityKg());
+//                entityManager.merge(existingPetFood);
+//            } else {
+//                entityManager.persist(new WarehousePetFood(
+//                        petFood.getSpecie(),
+//                        petFood.getName(),
+//                        petFood.getQuantityKg(),
+//                        petFood.getAgeRange(),
+//                        petFood.getAnimalSize()
+//                ));
+//            }
+//
+//            return new ResponseEntity<>(HttpStatus.CREATED);
+//        } catch (Exception err) {
+//            System.out.println("Ocorreu um erro ao registrar a ração");
+//            System.out.println(err);
+//            return ResponseEntity.internalServerError().body(HttpStatus.INTERNAL_SERVER_ERROR);
+//        }
+//    }
 
     @PutMapping("/{id}")
     @Transactional

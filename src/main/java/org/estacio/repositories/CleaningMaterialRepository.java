@@ -41,7 +41,7 @@ public class CleaningMaterialRepository {
             }
             return true;
         } catch (Exception err) {
-            System.out.println("Ocorreu um error ao adicionar o material");
+            System.out.println("Ocorreu um error ao adicionar o material de limpeza");
             return false;
         }
     }

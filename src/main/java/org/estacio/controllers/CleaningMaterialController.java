@@ -39,20 +39,20 @@ public class CleaningMaterialController {
         }
     }
 
-    @PostMapping("/")
-    @Transactional
-    public ResponseEntity<?> register (@RequestBody WarehouseCleaningMaterialDto cleaningMaterial) {
-        try {
-            if (!cleaningMaterialRepository.addMaterial(cleaningMaterial)) {
-                return ResponseEntity.badRequest().body("Ocorreu um erro ao adicionar o material");
-            }
-            return new ResponseEntity<>(HttpStatus.CREATED);
-        } catch (Exception err) {
-            System.out.println("Ocorreu um erro ao registrar o material de limpeza");
-            System.out.println(err);
-            return ResponseEntity.internalServerError().body(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
+//    @PostMapping("/")
+//    @Transactional
+//    public ResponseEntity<?> register (@RequestBody WarehouseCleaningMaterialDto cleaningMaterial) {
+//        try {
+//            if (!cleaningMaterialRepository.addMaterial(cleaningMaterial)) {
+//                return ResponseEntity.badRequest().body("Ocorreu um erro ao adicionar o material");
+//            }
+//            return new ResponseEntity<>(HttpStatus.CREATED);
+//        } catch (Exception err) {
+//            System.out.println("Ocorreu um erro ao registrar o material de limpeza");
+//            System.out.println(err);
+//            return ResponseEntity.internalServerError().body(HttpStatus.INTERNAL_SERVER_ERROR);
+//        }
+//    }
 
     @PutMapping("/{id}")
     @Transactional

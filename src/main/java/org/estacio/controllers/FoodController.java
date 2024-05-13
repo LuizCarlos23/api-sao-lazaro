@@ -40,36 +40,36 @@ public class FoodController {
         }
     }
 
-    @PostMapping ("/")
-    @Transactional
-    public ResponseEntity<?> register (@RequestBody WarehouseFoodDto food) {
-        try {
-            WarehouseFood existingFood = entityManager.createQuery(
-                            "SELECT wf FROM WarehouseFood wf " +
-                                    "WHERE wf.name = :name ", WarehouseFood.class)
-                    .setParameter("name", food.getName())
-                    .getResultList()
-                    .stream()
-                    .findFirst()
-                    .orElse(null);
-
-            if (existingFood != null) {
-                existingFood.setQuantity(existingFood.getQuantity() + food.getQuantity());
-                entityManager.merge(existingFood);
-            } else {
-                entityManager.persist(new WarehouseFood(
-                        food.getName(),
-                        food.getQuantity()
-                ));
-            }
-
-            return new ResponseEntity<>(HttpStatus.CREATED);
-        } catch (Exception err) {
-            System.out.println("Ocorreu um erro ao registrar o alimento");
-            System.out.println(err);
-            return ResponseEntity.internalServerError().body(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
+//    @PostMapping ("/")
+//    @Transactional
+//    public ResponseEntity<?> register (@RequestBody WarehouseFoodDto food) {
+//        try {
+//            WarehouseFood existingFood = entityManager.createQuery(
+//                            "SELECT wf FROM WarehouseFood wf " +
+//                                    "WHERE wf.name = :name ", WarehouseFood.class)
+//                    .setParameter("name", food.getName())
+//                    .getResultList()
+//                    .stream()
+//                    .findFirst()
+//                    .orElse(null);
+//
+//            if (existingFood != null) {
+//                existingFood.setQuantity(existingFood.getQuantity() + food.getQuantity());
+//                entityManager.merge(existingFood);
+//            } else {
+//                entityManager.persist(new WarehouseFood(
+//                        food.getName(),
+//                        food.getQuantity()
+//                ));
+//            }
+//
+//            return new ResponseEntity<>(HttpStatus.CREATED);
+//        } catch (Exception err) {
+//            System.out.println("Ocorreu um erro ao registrar o alimento");
+//            System.out.println(err);
+//            return ResponseEntity.internalServerError().body(HttpStatus.INTERNAL_SERVER_ERROR);
+//        }
+//    }
 
     @PutMapping("/{id}")
     @Transactional

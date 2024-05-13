@@ -38,30 +38,30 @@ public class MedicineController {
         }
     }
 
-    @PostMapping("/")
-    @Transactional
-    public ResponseEntity<?> register(@RequestBody WarehouseMedicineDto medicine) {
-        try {
-            WarehouseMedicine existingMedicine = medicineRepository.getByNameAndType(medicine.getName(), medicine.getType());
-
-            if (existingMedicine != null) {
-                existingMedicine.setQuantity(existingMedicine.getQuantity() + medicine.getQuantity());
-                entityManager.merge(existingMedicine);
-            } else {
-                entityManager.persist(new WarehouseMedicine(
-                        medicine.getName(),
-                        medicine.getType(),
-                        medicine.getQuantity()
-                ));
-            }
-
-            return new ResponseEntity<>(HttpStatus.CREATED);
-        } catch (Exception err) {
-            System.out.println("Ocorreu um erro ao registrar o remedio");
-            System.out.println(err);
-            return ResponseEntity.internalServerError().body(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
+//    @PostMapping("/")
+//    @Transactional
+//    public ResponseEntity<?> register(@RequestBody WarehouseMedicineDto medicine) {
+//        try {
+//            WarehouseMedicine existingMedicine = medicineRepository.getByNameAndType(medicine.getName(), medicine.getType());
+//
+//            if (existingMedicine != null) {
+//                existingMedicine.setQuantity(existingMedicine.getQuantity() + medicine.getQuantity());
+//                entityManager.merge(existingMedicine);
+//            } else {
+//                entityManager.persist(new WarehouseMedicine(
+//                        medicine.getName(),
+//                        medicine.getType(),
+//                        medicine.getQuantity()
+//                ));
+//            }
+//
+//            return new ResponseEntity<>(HttpStatus.CREATED);
+//        } catch (Exception err) {
+//            System.out.println("Ocorreu um erro ao registrar o remedio");
+//            System.out.println(err);
+//            return ResponseEntity.internalServerError().body(HttpStatus.INTERNAL_SERVER_ERROR);
+//        }
+//    }
 
     @PutMapping("/{id}")
     @Transactional

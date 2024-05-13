@@ -30,4 +30,26 @@ public class MedicineRepository {
                 .findFirst()
                 .orElse(null);
     }
+
+    public Boolean addMedicine(WarehouseMedicineDto medicine) {
+        try {
+            WarehouseMedicine existingMedicine = this.getByNameAndType(medicine.getName(), medicine.getType());
+
+            if (existingMedicine != null) {
+                existingMedicine.setQuantity(existingMedicine.getQuantity() + medicine.getQuantity());
+                entityManager.merge(existingMedicine);
+            } else {
+                entityManager.persist(new WarehouseMedicine(
+                        medicine.getName(),
+                        medicine.getType(),
+                        medicine.getQuantity()
+                ));
+            }
+            return true;
+        } catch (Exception err) {
+            System.out.println("Ocorreu um exeção ao adicionar medicamentos.");
+            System.out.println(err);
+            return false;
+        }
+    }
 }

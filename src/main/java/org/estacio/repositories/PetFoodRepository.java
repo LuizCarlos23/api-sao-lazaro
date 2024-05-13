@@ -1,8 +1,10 @@
 package org.estacio.repositories;
 
 import jakarta.persistence.EntityManager;
+import org.estacio.dtos.WarehouseMedicineDto;
 import org.estacio.dtos.WarehousePetFoodDto;
 import org.estacio.entities.WarehouseFood;
+import org.estacio.entities.WarehouseMedicine;
 import org.estacio.entities.WarehousePetFood;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -31,6 +33,32 @@ public class PetFoodRepository {
                 .stream()
                 .findFirst()
                 .orElse(null);
+    }
+
+    public Boolean addPetFood(WarehousePetFoodDto petFood) {
+        try {
+            WarehousePetFood existingPetFood = this.getByPetFood(new WarehousePetFoodDto(
+                    petFood.getSpecie(), petFood.getName(), null,
+                    petFood.getAgeRange(), petFood.getAnimalSize()));
+
+            if (existingPetFood != null) {
+                existingPetFood.setQuantityKg(existingPetFood.getQuantityKg() + petFood.getQuantityKg());
+                entityManager.merge(existingPetFood);
+            } else {
+                entityManager.persist(new WarehousePetFood(
+                        petFood.getSpecie(),
+                        petFood.getName(),
+                        petFood.getQuantityKg(),
+                        petFood.getAgeRange(),
+                        petFood.getAnimalSize()
+                ));
+            }
+            return true;
+        } catch (Exception err) {
+            System.out.println("Ocorreu um exeção ao adicionar ração.");
+            System.out.println(err);
+            return false;
+        }
     }
 
 }

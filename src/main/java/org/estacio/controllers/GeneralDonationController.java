@@ -3,9 +3,7 @@ package org.estacio.controllers;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
 import jakarta.transaction.Transactional;
-import org.estacio.dtos.GeneralDonationDto;
-import org.estacio.dtos.ShoppingDto;
-import org.estacio.dtos.WarehousePetFoodDto;
+import org.estacio.dtos.*;
 import org.estacio.entities.*;
 import org.estacio.enums.GeneralDonationType;
 import org.estacio.enums.ShoppingType;
@@ -58,37 +56,14 @@ public class GeneralDonationController {
 
     @PostMapping("/pet_food")
     @Transactional
-    public ResponseEntity<?> petFoodRegister(@RequestBody GeneralDonationDto donatedPetFood) {
+    public ResponseEntity<?> petFoodRegister(@RequestBody WarehousePetFoodDto donatedPetFood) {
         try {
-            GeneralDonation donation = new GeneralDonation(
-                    GeneralDonationType.PET_FOOD,
-                    donatedPetFood.getPetfoodSpecie(),
-                    donatedPetFood.getName(),
-                    donatedPetFood.getQuantity(),
-                    new Date(),
-                    donatedPetFood.getPetfoodAnimalSize(),
-                    donatedPetFood.getPetfoodAgeRange(),
-                    null
-            );
+            GeneralDonation donation = new GeneralDonation(donatedPetFood);
 
             entityManager.persist(donation);
 
-
-            WarehousePetFood existingPetFood = petFoodRepository.getByPetFood(new WarehousePetFoodDto(
-                    donatedPetFood.getPetfoodSpecie(), donatedPetFood.getName(), null,
-                    donatedPetFood.getPetfoodAgeRange(), donatedPetFood.getPetfoodAnimalSize()));
-
-            if (existingPetFood != null) {
-                existingPetFood.setQuantityKg(existingPetFood.getQuantityKg() + donatedPetFood.getQuantity());
-                entityManager.merge(existingPetFood);
-            } else {
-                entityManager.persist(new WarehousePetFood(
-                        donatedPetFood.getPetfoodSpecie(),
-                        donatedPetFood.getName(),
-                        donatedPetFood.getQuantity(),
-                        donatedPetFood.getPetfoodAgeRange(),
-                        donatedPetFood.getPetfoodAnimalSize()
-                ));
+            if (!petFoodRepository.addPetFood(donatedPetFood)) {
+                return ResponseEntity.badRequest().body("Não foi possível adicionar a ração, por favor verifique os campos");
             }
 
             return new ResponseEntity<>(HttpStatus.CREATED);
@@ -101,31 +76,14 @@ public class GeneralDonationController {
 
     @PostMapping("/food")
     @Transactional
-    public ResponseEntity<?> FoodRegister(@RequestBody GeneralDonationDto donatedFood) {
+    public ResponseEntity<?> FoodRegister(@RequestBody WarehouseFoodDto donatedFood) {
         try {
-            GeneralDonation shopping = new GeneralDonation(
-                    GeneralDonationType.FOOD,
-                    null,
-                    donatedFood.getName(),
-                    donatedFood.getQuantity(),
-                    new Date(),
-                    null,
-                    null,
-                    null
-            );
+            GeneralDonation donation = new GeneralDonation(donatedFood);
 
-            entityManager.persist(shopping);
+            entityManager.persist(donation);
 
-            WarehouseFood existingFood = foodRepository.getByName(donatedFood.getName());
-
-            if (existingFood != null) {
-                existingFood.setQuantity(existingFood.getQuantity() + donatedFood.getQuantity());
-                entityManager.merge(existingFood);
-            } else {
-                entityManager.persist(new WarehouseFood(
-                        donatedFood.getName(),
-                        donatedFood.getQuantity()
-                ));
+            if (!foodRepository.addFood(donatedFood)) {
+                return ResponseEntity.badRequest().body("Não foi possível adicionar o alimento, por favor verifique os campos");
             }
 
             return new ResponseEntity<>(HttpStatus.CREATED);
@@ -138,32 +96,14 @@ public class GeneralDonationController {
 
     @PostMapping("/medicine")
     @Transactional
-    public ResponseEntity<?> medicineRegister(@RequestBody GeneralDonationDto donatedMedicine) {
+    public ResponseEntity<?> medicineRegister(@RequestBody WarehouseMedicineDto donatedMedicine) {
         try {
-            GeneralDonation donation = new GeneralDonation(
-                    GeneralDonationType.MEDICINE,
-                    null,
-                    donatedMedicine.getName(),
-                    donatedMedicine.getQuantity(),
-                    new Date(),
-                    null,
-                    null,
-                    donatedMedicine.getMedicineType()
-            );
+            GeneralDonation donation = new GeneralDonation(donatedMedicine);
 
             entityManager.persist(donation);
 
-            WarehouseMedicine existingMedicine = medicineRepository.getByNameAndType(donatedMedicine.getName(), donatedMedicine.getMedicineType());
-
-            if (existingMedicine != null) {
-                existingMedicine.setQuantity(existingMedicine.getQuantity() + donatedMedicine.getQuantity());
-                entityManager.merge(existingMedicine);
-            } else {
-                entityManager.persist(new WarehouseMedicine(
-                        donatedMedicine.getName(),
-                        donatedMedicine.getMedicineType(),
-                        donatedMedicine.getQuantity()
-                ));
+            if (!medicineRepository.addMedicine(donatedMedicine)) {
+                return ResponseEntity.badRequest().body("Não foi possível adicionar o medicamento, por favor verifique os campos");
             }
 
             return new ResponseEntity<>(HttpStatus.CREATED);
@@ -176,32 +116,14 @@ public class GeneralDonationController {
 
     @PostMapping("/cleaning_material")
     @Transactional
-    public ResponseEntity<?> cleaningMaterialRegister(@RequestBody GeneralDonationDto donatedCleaningMaterial) {
+    public ResponseEntity<?> cleaningMaterialRegister(@RequestBody WarehouseCleaningMaterialDto donatedCleaningMaterial) {
         try {
-            GeneralDonation donation = new GeneralDonation(
-                    GeneralDonationType.CLEANING_MATERIAL,
-                    null,
-                    donatedCleaningMaterial.getName(),
-                    donatedCleaningMaterial.getQuantity(),
-                    new Date(),
-                    null,
-                    null,
-                    null
-            );
+            GeneralDonation donation = new GeneralDonation(donatedCleaningMaterial);
 
             entityManager.persist(donation);
 
-            WarehouseCleaningMaterial existingCleaningMaterial = cleaningMaterialRepository.getByName(
-                    donatedCleaningMaterial.getName());
-
-            if (existingCleaningMaterial != null) {
-                existingCleaningMaterial.setQuantity(existingCleaningMaterial.getQuantity() + donatedCleaningMaterial.getQuantity());
-                entityManager.merge(existingCleaningMaterial);
-            } else {
-                entityManager.persist(new WarehouseCleaningMaterial(
-                        donatedCleaningMaterial.getName(),
-                        donatedCleaningMaterial.getQuantity()
-                ));
+            if (!cleaningMaterialRepository.addMaterial(donatedCleaningMaterial)) {
+                return ResponseEntity.badRequest().body("Não foi possível adicionar o material de limpeza, por favor verifique os campos");
             }
 
             return new ResponseEntity<>(HttpStatus.CREATED);
