@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema São Lázaro - Estoque</title>
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/bootstrap5.1/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"/>
+
+</head>
+
+<body>
+    <header class="p-3 text-center" style="position: relative;">
+        <a href="../index.html">
+            <img src="../img/logo-abrigo-sao-lazaro (2).jpg" alt="Logo" width="90" height="50" style="position: absolute; left: 10px; top: 10px;">
+        </a>
+        <h1 id="titulo">Controle de Estoque</h1>
+    </header>
+    <div class="container-fluid">
+        <div class="row">
+          <aside class="col-sm-2 bg-dark sidebar p-3">
+              <nav class="nav flex-column">
+                  <a class="nav-link active text-white" href="../index.html">Home</a>
+                  <a class="nav-link text-white" href="cadastro.html">Cadastro</a>
+                  <a href="#" onclick="history.back()" class="back-button">Voltar</a>
+                  <!-- <a class="nav-link text-white" href="#">Link 3</a>
+                  <a class="nav-link text-white" href="#">Link 4</a> -->
+              </nav>
+          </aside>
+          <main class="col-sm p-4">
+              <!-- Conteúdo principal aqui -->
+              <h2>Controle de Estoque</h2>
+                <form action="">
+                    <div class="form-group col-sm-2">
+                        <label for="">Grupo:</label>
+                       <select class="form-select" name="" id="grupo_cons">
+                        <option value="01" selected>Rações</option>
+                        <option value="02">Alimentos</option>
+                        <option value="03">Medicações</option>
+                        <option value="04">Limpeza</option>
+                       </select>
+                    </div>
+                                <!-- Ração -->
+                    <div id="grupo_01" class="grupo box form-row">
+                        <div class="form-group col-sm-3 p-1">
+                            <label for="">Espécie</label>
+                            <input type="text" class="form-control" name="" id="pesq1">
+                        </div>
+
+                        <div class="form-group col-sm-3 p-1">
+                            <label for="">Nome</label>
+                            <input type="text" class="form-control" name="" id="pesq2">
+                        </div>
+
+                        <div class="form-group col-sm-2 p-1">
+                            <label for="">Quantidade(KG)</label>
+                            <input type="text" class="form-control" name="" id="pesq3">
+                        </div>
+
+                        <div class="form-group col-sm-3 p-1">
+                            <label for="">Faixa Etária</label>
+                            <input type="text" class="form-control" name="" id="pesq4">
+                        </div>
+
+                        <div class="form-group col-sm-3 p-1">
+                            <label for="">Porte do animal</label>
+                            <input type="text" class="form-control" name="" id="pesq5">
+                        </div>
+                </form>
+                        <p></p>
+                        <div class="container">
+                            <h2>Tabela de Rações</h2>
+                            <table class="table">
+                              <thead class="table-dark">
+                                <tr>
+                                  <th scope="col">Espécie</th>
+                                  <th scope="col">Nome</th>
+                                  <th scope="col">Quantidade</th>
+                                  <th scope="col">Faixa Etária</th>
+                                  <th scope="col">Porte do Animal</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr>
+                                  <td>Gato</td>
+                                  <td>Miau</td>
+                                  <td>2</td>
+                                  <td>Adulto</td>
+                                  <td>Pequeno</td>
+                                </tr>
+                                <tr>
+                                  <td>Cachorro</td>
+                                  <td>Rex</td>
+                                  <td>1</td>
+                                  <td>Filhote</td>
+                                  <td>Médio</td>
+                                </tr>
+                                <!-- Adicione mais linhas conforme necessário -->
+                              </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                             <!-- Fim Ração -->
+
+                             <!-- Alimentos -->
+                <form action="">
+                    <div id="grupo_02" class="grupo box form-row" style="display:none;">
+                        <div class="form-group col-sm-3">
+                            <label for="">Nome</label>
+                            <input type="text" class="form-control" name="" id="pesq6">
+                        </div>
+
+                        <div class="form-group col-sm-3">
+                            <label for="">Quantidade</label>
+                            <input type="number" class="form-control" name="" id="pesq7">
+                        </div>
+                </form>
+                        <p></p>
+                        <div class="container">
+                            <h2>Tabela de Alimentos</h2>
+                            <table class="table">
+                              <thead class="table-dark">
+                                <tr>
+                                  <th scope="col">Nome</th>
+                                  <th scope="col">Quantidade</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr>
+                                  <td>Arroz</td>
+                                  <td>Feijão</td>
+                                </tr>
+                                <tr>
+                                  <td>20</td>
+                                  <td>10</td>
+                                </tr>
+                                <!-- Adicione mais linhas conforme necessário -->
+                              </tbody>
+                            </table>
+                        </div>
+                    </div>
+                             <!-- Fim Alimentos -->
+
+                             <!-- Remédios -->
+                <form action="">
+                    <div id="grupo_03" class="grupo box form-row" style="display:none;">
+                        <div class="form-group col-sm-3">
+                            <label for="">Nome</label>
+                            <input type="text" class="form-control" name="" id="pesq8">
+                        </div>
+
+                        <div class="form-group col-sm-3">
+                            <label for="">Tipo</label>
+                            <input type="text" class="form-control" name="" id="pesq9">
+                        </div>
+
+                        <div class="form-group col-sm-3">
+                            <label for="">Unidade</label>
+                            <input type="text" class="form-control" name="" id="pesq10">
+                        </div>
+                </form>
+                        <p></p>
+                        <div class="container">
+                            <h2>Tabela de Medicações</h2>
+                            <table class="table">
+                              <thead class="table-dark">
+                                <tr>
+                                  <th scope="col">Nome</th>
+                                  <th scope="col">Tipo</th>
+                                  <th scope="col">Unidade</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr>
+                                  <td>floratil</td>
+                                  <td>gripe</td>
+                                  <td>10</td>
+                                </tr>
+                                <tr>
+                                  <td>Novalgina</td>
+                                  <td>dores</td>
+                                  <td>5</td>
+                                </tr>
+                                <!-- Adicione mais linhas conforme necessário -->
+                              </tbody>
+                            </table>
+                        </div>
+                    </div>
+                            <!-- Fim Remédios -->
+
+                            <!-- Limpeza -->
+                <form action="">
+                    <div id="grupo_04" class="grupo box form-row" style="display:none;">
+                        <div class="form-group col-sm-3">
+                            <label for="">Nome</label>
+                            <input type="text" class="form-control" name="" id="pesq11">
+                        </div>
+
+                        <div class="form-group col-sm-3">
+                            <label for="">Quantidade</label>
+                            <input type="text" class="form-control" name="" id="pesq12">
+                        </div>
+                </form>
+                        <p></p>
+                        <div class="container">
+                            <h2>Tabela de Material de limpeza</h2>
+                            <table class="table">
+                              <thead class="table-dark">
+                                <tr>
+                                    <th scope="col">Nome</th>
+                                    <th scope="col">Quantidade</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr>
+                                  <td>Desifetante</td>
+                                  <td>10</td>
+                                </tr>
+                                <tr>
+                                  <td>Sabonete</td>
+                                  <td>5</td>
+                                </tr>
+                                <!-- Adicione mais linhas conforme necessário -->
+                              </tbody>
+                            </table>
+                        </div>
+                    </div>
+                            <!-- Fim Limpeza -->
+          </main>
+        </div>
+     </div>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>  
+    <script src="../js/jquery-3.7.1.min.js"></script>
+    <script src="../js/bootstrap5.1/bootstrap.min.js"></script>
+    <script>
+        document.getElementById('grupo_cons').addEventListener('change', function() {
+            var selectedOption = this.value;
+            var grupos = document.querySelectorAll('.grupo');
+            
+            grupos.forEach(function(grupo) {
+                if (grupo.id === 'grupo_' + selectedOption) {
+                    grupo.style.display = 'block';
+                } else {
+                    grupo.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

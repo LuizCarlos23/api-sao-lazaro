@@ -3,7 +3,7 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    font-family: 'outfit', sans-serif;
+    font-family: 'Inter', sans-serif;
 }
 
 header {
@@ -13,62 +13,145 @@ header {
     padding: 10px;
 }
 
-nav.menu-lateral{
-    width: 40px;
-    height: 100%;
-    background-color: #202020;
-    padding: 40px 0 40px 1%;
-    box-shadow: 3px 0 0 #801E23;
-    position: fixed;
-    top: 0;
-    left: 0;
-    overflow: hidden;
-    transition: 1s;
-}
-
-nav.menu-lateral:hover{
-    width: 300px;
-}
-
-.bnt-expandir{
-    width: 100%;
-    padding-left: 0px;
-}
-
-.bnt-expandir > i{
-    color: #fff;
-    font-size: 28px;
-    cursor: pointer;
-}
-
-ul{
-    height: 100%;
-    list-style-type: none;
-}
-
-ul li.item-menu a{
-    color: #fff;
-    text-decoration: none;
-    font-size: 20px;
-    padding: 20px 4%;
+.sidebar {
     display: flex;
-    margin-bottom: 20px;
-    line-height: 40px;
+    flex-direction: column;
+    height: 100vh; /* Definir a altura da barra lateral como 100% da altura da viewport */
+    overflow-y: auto; /* Adicionar uma barra de rolagem vertical quando necessário */
+    position: sticky;
+    top: 0px; /* Igual à altura do cabeçalho */
+    padding-top: 15px;
+    padding-bottom: 15px;
+    box-shadow: 2px 0 5px rgba(0,0,0,0.1);
 }
 
-ul li.item-menu a .txt-link{
-    margin-left: 20px;
+.nav-link {
+    color: #fff;
+    padding: 10px;
+    border-radius: 4px;
 }
 
-
-ul li.item-menu a icon > i{
-    font-size: 30px;
+.nav-link:hover {
+    background-color: #ddd;
+    color: #333;
 }
 
-ul li.item-menu{
-    transition: .2s;
+#titulo {
+    font-size: 25px;
 }
 
-ul li.item-menu:hover{
-    background: #801E23;
+div.box{
+    background-color:white;
+    border: 1px solid black;
+    border-radius: 0.5rem;
+    padding: 15px 8px 8px 8px;
+    margin-top: 13px;
+    margin-bottom: 8px;
+  }
+
+  div.form-row {
+    display: -ms-flexbox;
+    display: flex;
+    width: 100%; /* Definindo uma largura explícita para o contêiner */
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    margin-right: -5px;
+    margin-left: -5px;
+  }
+  
+  div.form-row > .col,
+  div.form-row > [class*="col-"] {
+    padding-right: 5px;
+    padding-left: 5px;
+  }
+
+  .back-button {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #008CBA;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  .back-button:hover {
+    background-color: #005F7D;
+  }
+  .back-button-container {
+    position: absolute;
+    bottom: 20px;
+    width: 100%;
+    text-align: center;
 }
+
+/**************dropdown login*********************
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropbtn {
+    background-color: transparent;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.dropbtn i {
+    margin-right: 5px;
+}
+
+.dropbtn:hover, .dropbtn:focus {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    right: 0;
+    background-color: #f9f9f9;
+    min-width: 200px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content form {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.dropdown-content form label {
+    margin-bottom: 5px;
+}
+
+.dropdown-content form input {
+    margin-bottom: 10px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.dropdown-content form button {
+    padding: 10px;
+    background-color: #333;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.dropdown-content form button:hover {
+    background-color: #555;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+*/

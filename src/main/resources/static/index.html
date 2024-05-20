@@ -1,92 +1,109 @@
 <!DOCTYPE html>
-<html lang="br">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sistema de Gerenciamento</title>
-    <link rel="stylesheet" href="css/style.css" />
-    <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css" />
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/style.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"/>
     <script src="js/jquery-3.7.1.min.js"></script>
-    <script src="js/bootstrap/bootstrap.js"></script>
-  </head>
-  <body>
-    <!-- conteiner -> Inicio -->
-    <div class="container-fluid">
-      <header>
-        <h1>Sistema de Gerenciamento</h1>
-      </header>
-      <nav class="menu-lateral">
-        <div class="bnt-expandir">
-          <i class="bi bi-list"></i>
-        </div>
+</head>
 
-        <ul>
-          <li class="item-menu">
-            <a href="registro.html">
-              <img
-                width="25"
-                height="29"
-                src="https://img.icons8.com/ios/50/FFFFFF/cat-footprint.png"
-                alt="cat-footprint"
-              />
-              <span class="txt-link">Cadastro</span>
-            </a>
-          </li>
-          <li class="item-menu">
-            <a href="#" data-toggle="modal" data-target="#modalExemplo">
-              <span class="icon"><i class="bi bi-boxes"></i></span>
-              <span class="txt-link">Estoque</span>
-            </a>
-          </li>
-          <li class="item-menu">
-            <a href="login.html">
-              <span class="icon"><i class="bi bi-person-circle"></i></span>
-              <span class="txt-link">Login</span>
-            </a>
-          </li>
-          <li class="item-menu">
-            <a href="#">
-              <span class="icon"></span>
-              <span class="txt-link"></span>
-            </a>
-          </li>
-          <li class="item-menu">
-            <a href="#">
-              <span class="icon"></span>
-              <span class="txt-link"></span>
-            </a>
-          </li>
-          <li class="item-menu">
-            <a href="#">
-              <span class="icon"></span>
-              <span class="txt-link"></span>
-            </a>
-          </li>
-        </ul>
-      </nav>
-    </div>
+<body>
+  <header class="p-3 text-center  justify-content-between align-items-center">    
+    <img src="img/logo-abrigo-sao-lazaro (2).jpg" alt="Logo" width="90" height="50" style="position: absolute; left: 10px; top: 10px;">
+    <h1 id="titulo">Sistema de gerenciamento</h1>
+    <!-- <div class="dropdown">
+      <button class="dropbtn">
+          <i class="fas fa-user"></i> Login
+      </button>
+      <div class="dropdown-content">
+          <form action="/login" method="post">
+              <label for="username" class="text-dark">Usuário:</label>
+              <input type="text" id="username" name="username" required>
+              <label for="password" class="text-dark">Senha:</label>
+              <input type="password" id="password" name="password" required>
+              <button type="submit">Entrar</button>
+          </form>
+      </div>
+    </div> -->
+  </header>
 
-<!-- MODAL ESTOQUE-->
-    <div class="modal fade bd-example-modal-lg" id="modalExemplo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Estoque</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              ...
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-              <button type="button" class="btn btn-primary">Salvar mudanças</button>
+  <div class="container-fluid">
+    <div class="row">
+      <aside class="col-12 col-sm-3 col-lg-2 bg-dark sidebar p-3" id="sidebar">
+        <nav class="nav flex-column">
+            <a class="nav-link active text-white" href="Modal/estoque.html">Estoque</a>
+            <a class="nav-link text-white" href="Modal/cadastro.html">Cadastro</a>
+            <!-- <a class="nav-link text-white" href="#">Link 3</a>
+            <a class="nav-link text-white" href="#">Link 4</a> -->
+        </nav>
+        
+      </aside>
+      <main class="col-sm p-4">
+
+        <div class="container">
+          <div class="info">
+            <h2>Informações Básicas</h2>
+            <p>Bem-vindo à página principal do sistema gerencial do Abrigo de Animais. Aqui você encontrará informações úteis para gerenciar as atividades diárias do abrigo.</p>
+            <ul>
+              <li><strong>Estoque:</strong> Verifique o estoque atual de rações, alimentos, materiais de limpeza e remédios <a href="Modal/estoque.html">aqui</a>.</li>
+              <li><strong>Cadastro de Animais:</strong> Adicione novos animais ao sistema ou atualize informações sobre os animais abrigados <a href="Modal/cadastro.html">aqui</a>.</li>
+            </ul>
+          </div>
+
+          <div class="container box">
+            <h4 class="mt-4">Resumo de adoções</h2>
+          
+            <div class="table-responsive">
+              <table class="table table-bordered table-striped mt-4">
+                <thead>
+                  <tr>
+                    <th>Mês</th>
+                    <th>Número de Adoções</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Janeiro</td>
+                    <td>20</td>
+                  </tr>
+                  <tr>
+                    <td>Fevereiro</td>
+                    <td>15</td>
+                  </tr>
+                  <tr>
+                    <td>Março</td>
+                    <td>25</td>
+                  </tr>
+                  <tr>
+                    <td>Abril</td>
+                    <td>18</td>
+                  </tr>
+                  <tr>
+                    <td>Maio</td>
+                    <td>22</td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
           </div>
+          
+          <!-- <div class="links">
+            <a href="relatorios.html">Gerar Relatórios</a>
+            <a href="agenda.html">Visualizar Agenda</a>
+            <a href="configuracoes.html">Configurações do Sistema</a>
+          </div> -->
+
         </div>
-    </div>
-<!-- FIM MODAL ESTOQUE-->
+
+      </main>
+  </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+  <script src="js/bootstrap/bootstrap.min.js"></script>
+  <script src="js/main.js"></script>
 </body>
 </html>
