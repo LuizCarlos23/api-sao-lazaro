@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tela de Consulta</title>
+    <link rel="stylesheet" href="/css/consulta.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Tela de Consulta</h1>
+        <div class="search-box">
+            <input type="text" id="search" placeholder="Digite sua consulta...">
+            <button onclick="performSearch()">Consultar</button>
+        </div>
+        <table id="results">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>Descrição</th>
+                </tr>
+            </thead>
+            <tbody>
+        
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        function performSearch() {
+            
+            const results = [
+                {id: 1, name: 'Exemplo 1', description: 'Descrição do Exemplo 1'},
+                {id: 2, name: 'Exemplo 2', description: 'Descrição do Exemplo 2'}
+            ];
+
+            const tbody = document.querySelector('#results tbody');
+            tbody.innerHTML = ''; 
+
+            results.forEach(result => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${result.id}</td>
+                    <td>${result.name}</td>
+                    <td>${result.description}</td>
+                `;
+                tbody.appendChild(row);
+            });
+        }
+    </script>
+</body>
+</html>
