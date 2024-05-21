@@ -3,51 +3,200 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tela de Consulta</title>
-    <link rel="stylesheet" href="/css/consulta.css">
+    <title>Sistema São Lázaro</title>
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/bootstrap5.1/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"/>
+
 </head>
+
 <body>
-    <div class="container">
-        <h1>Tela de Consulta</h1>
-        <div class="search-box">
-            <input type="text" id="search" placeholder="Digite sua consulta...">
-            <button onclick="performSearch()">Consultar</button>
+    <header class="p-3 text-center" style="position: relative;">
+        <a href="../index.html">
+            <img src="../img/logo-abrigo-sao-lazaro (2).jpg" alt="Logo" width="90" height="50" style="position: absolute; left: 10px; top: 10px;">
+        </a>
+        <h1 id="titulo">Sistema Gerencial</h1>
+    </header>
+    <div class="container-fluid">
+        <div class="row">
+          <aside class="col-sm-2 bg-dark sidebar p-3">
+              <nav class="nav flex-column">
+                  <a class="nav-link active text-white" href="../index.html">Home</a>
+                  <a class="nav-link text-white" href="cadastro.html">Cadastro</a>
+                  <a class="nav-link text-white" href="estoque.html">Estoque</a>
+                  <a href="#" onclick="history.back()" class="back-button">Voltar</a>
+                  <!--<a class="nav-link text-white" href="#">Link 4</a> -->
+              </nav>
+          </aside>
+          
+          <main class="col-sm p-4">
+
+            <div class="form-row">
+
+                <div class="form-group col-sm-2">
+                    <label for="">Categoria:</label>
+                   <select class="form-select" name="" id="categ_cons">
+                    <option value="01" selected>Animais</option>
+                    <option value="02">Rações</option>
+                    <option value="03">Alimentos</option>
+                    <option value="04">Medicações</option>
+                    <option value="05">Limpeza</option>
+                   </select>
+                </div>
+
+            </div>
+
+            <div id="categoria_01" class="container categoria box">
+                <h2>Tabela de Animais</h2>
+                <table class="table table-bordered">
+                  <thead class="table-dark">
+                    <tr>
+                      <th scope="col">Data entrada</th>
+                      <th scope="col">Raça</th>
+                      <th scope="col">Anamnese</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>...</td>
+                      <td>...</td>
+                      <td>...</td>
+                    </tr>
+                    <tr>
+                      <td>...</td>
+                      <td>...</td>
+                      <td>...</td>
+                    </tr>
+                    <!-- Adicione mais linhas conforme necessário -->
+                  </tbody>
+                </table>
+            </div>
+
+            <div id="categoria_02" class="container categoria box" style="display:none;">
+                <h2>Tabela de Rações</h2>
+                <table class="table table-bordered">
+                  <thead class="table-dark">
+                    <tr>
+                      <th scope="col">Espécie</th>
+                      <th scope="col">Nome</th>
+                      <th scope="col">Quantidade</th>
+                      <th scope="col">Faixa Etária</th>
+                      <th scope="col">Porte do Animal</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>...</td>
+                      <td>...</td>
+                      <td>...</td>
+                      <td>...</td>
+                      <td>...</td>
+                    </tr>
+                    <tr>
+                      <td>...</td>
+                      <td>...</td>
+                      <td>...</td>
+                      <td>...</td>
+                      <td>...</td>
+                    </tr>
+                    <!-- Adicione mais linhas conforme necessário -->
+                  </tbody>
+                </table>
+            </div>
+
+            <div id="categoria_03" class="container categoria box" style="display:none;">
+                <h2>Tabela de Alimentos</h2>
+                <table class="table table-bordered">
+                  <thead class="table-dark">
+                    <tr>
+                      <th scope="col">Nome</th>
+                      <th scope="col">Quantidade</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>...</td>
+                      <td>...</td>
+                    </tr>
+                    <tr>
+                      <td>...</td>
+                      <td>...</td>
+                    </tr>
+                    <!-- Adicione mais linhas conforme necessário -->
+                  </tbody>
+                </table>
+            </div>
+
+            <div id="categoria_04" class="container categoria box" style="display:none;">
+                <h2>Tabela de Medicações</h2>
+                <table class="table table-bordered">
+                  <thead class="table-dark">
+                    <tr>
+                      <th scope="col">Nome</th>
+                      <th scope="col">Tipo</th>
+                      <th scope="col">Unidade</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>...</td>
+                      <td>...</td>
+                      <td>...</td>
+                    </tr>
+                    <tr>
+                      <td>...</td>
+                      <td>...</td>
+                      <td>...</td>
+                    </tr>
+                    <!-- Adicione mais linhas conforme necessário -->
+                  </tbody>
+                </table>
+            </div>
+
+            <div id="categoria_05" class="container categoria box" style="display:none;">
+                <h2>Tabela de Material de limpeza</h2>
+                <table class="table table-bordered">
+                  <thead class="table-dark">
+                    <tr>
+                        <th scope="col">Nome</th>
+                        <th scope="col">Quantidade</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>...</td>
+                      <td>...</td>
+                    </tr>
+                    <tr>
+                      <td>...</td>
+                      <td>...</td>
+                    </tr>
+                    <!-- Adicione mais linhas conforme necessário -->
+                  </tbody>
+                </table>
+            </div>
+
+          </main>
         </div>
-        <table id="results">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Nome</th>
-                    <th>Descrição</th>
-                </tr>
-            </thead>
-            <tbody>
-        
-            </tbody>
-        </table>
-    </div>
-
+     </div>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>  
+    <script src="../js/jquery-3.7.1.min.js"></script>
+    <script src="../js/bootstrap5.1/bootstrap.min.js"></script>
     <script>
-        function performSearch() {
+        document.getElementById('categ_cons').addEventListener('change', function() {
+            var selectedOption = this.value;
+            var categorias = document.querySelectorAll('.categoria');
             
-            const results = [
-                {id: 1, name: 'Exemplo 1', description: 'Descrição do Exemplo 1'},
-                {id: 2, name: 'Exemplo 2', description: 'Descrição do Exemplo 2'}
-            ];
-
-            const tbody = document.querySelector('#results tbody');
-            tbody.innerHTML = ''; 
-
-            results.forEach(result => {
-                const row = document.createElement('tr');
-                row.innerHTML = `
-                    <td>${result.id}</td>
-                    <td>${result.name}</td>
-                    <td>${result.description}</td>
-                `;
-                tbody.appendChild(row);
+            categorias.forEach(function(categoria) {
+                if (categoria.id === 'categoria_' + selectedOption) {
+                    categoria.style.display = 'block';
+                } else {
+                    categoria.style.display = 'none';
+                }
             });
-        }
+        });
     </script>
+
 </body>
 </html>
+
