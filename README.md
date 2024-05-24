@@ -115,3 +115,117 @@ Esta documentação descreve as rotas disponíveis na API do sistema.
 | Baixa Materiais de Limpeza   | PUT    | `/cleaningmaterial/writeoff`    | Dá baixa em um material de limpeza específico    | `{ "id": integer, "quantity": integer }`                                                      |
 | Remover Materiais de Limpeza | DELETE | `/cleaningmaterial/{id}`           | Remove um material de limpeza específico         | N/A                                                                                   |
 
+
+## Esquema do Banco de Dados
+
+### registered_animals
+
+| Coluna    | Tipo     | Descrição                     |
+|-----------|----------|-------------------------------|
+| id        | SERIAL   | Chave primária                |
+| entry_date| DATE     | Data de entrada               |
+| race      | VARCHAR(100) | Raça do animal                |
+| anamnesis | TEXT     | Anamnese                      |
+
+### animals_in_shelters
+
+| Coluna               | Tipo     | Descrição                                 |
+|----------------------|----------|-------------------------------------------|
+| id                   | SERIAL   | Chave primária                            |
+| registered_animal_id | INT      | Referência para registered_animals(id)    |
+| location             | VARCHAR(100) | Localização do abrigo                       |
+
+### deceased_animals
+
+| Coluna               | Tipo     | Descrição                                 |
+|----------------------|----------|-------------------------------------------|
+| id                   | SERIAL   | Chave primária                            |
+| registered_animal_id | INT      | Referência para registered_animals(id)    |
+| reason               | VARCHAR(100) | Razão do óbito                              |
+| date                 | DATE     | Data do óbito                             |
+
+### adopted_animals
+
+| Coluna               | Tipo     | Descrição                                 |
+|----------------------|----------|-------------------------------------------|
+| id                   | SERIAL   | Chave primária                            |
+| registered_animal_id | INT      | Referência para registered_animals(id)    |
+| adoption_date        | DATE     | Data da adoção                            |
+| adopter_name         | VARCHAR(100) | Nome do adotante                           |
+| adopter_number       | VARCHAR(20)  | Número de contato do adotante              |
+| adopter_cpf          | VARCHAR(14)  | CPF do adotante                            |
+
+### shopping
+
+| Coluna             | Tipo        | Descrição                     |
+|--------------------|-------------|-------------------------------|
+| id                 | SERIAL      | Chave primária                |
+| type               | INT         | Tipo de item (Alimento, Ração, Medicamento, Material de limpeza)                  |
+| name               | VARCHAR(100)| Nome do item                  |
+| quantity           | NUMERIC     | Quantidade                    |
+| petfood_animal_size| INT         | Tamanho do animal (para ração)|
+| petfood_age_range  | INT         | Faixa etária (para ração)     |
+| petfood_specie     | INT         | Espécie do animal (para ração)|
+| medicine_type      | INT         | Tipo de medicamento (Comprimido, Líquido, Injetável, Spray, Pomada)           |
+| value              | NUMERIC     | Valor                         |
+| date               | DATE        | Data                          |
+
+### general_donations
+
+| Coluna             | Tipo        | Descrição                     |
+|--------------------|-------------|-------------------------------|
+| id                 | SERIAL      | Chave primária                |
+| type               | INT         | Tipo de item (Alimento, Ração, Medicamento, Material de limpeza)                  |
+| name               | VARCHAR(100)| Nome do item                  |
+| quantity           | NUMERIC     | Quantidade                    |
+| petfood_animal_size| INT         | Tamanho do animal (para ração)|
+| petfood_age_range  | INT         | Faixa etária (para ração)     |
+| petfood_specie     | INT         | Espécie do animal (para ração)|
+| medicine_type      | INT         | Tipo de medicamento (Comprimido, Líquido, Injetável, Spray, Pomada)           |
+| date               | DATE        | Data da doação                |
+
+### monetary_donations
+
+| Coluna    | Tipo        | Descrição          |
+|-----------|-------------|--------------------|
+| id        | SERIAL      | Chave primária     |
+| value     | NUMERIC     | Valor da doação    |
+| type      | INT         | Tipo de doação (Pix, Cédula, Cartão)     |
+| date      | DATE        | Data da doação     |
+
+
+### warehouse_foods
+
+| Coluna    | Tipo        | Descrição             |
+|-----------|-------------|-----------------------|
+| id        | SERIAL      | Chave primária        |
+| name      | VARCHAR(100)| Nome do alimento      |
+| quantity  | NUMERIC     | Quantidade            |
+
+### warehouse_pet_foods
+
+| Coluna        | Tipo        | Descrição             |
+|---------------|-------------|-----------------------|
+| id            | SERIAL      | Chave primária        |
+| specie        | INTEGER     | Espécie do animal     |
+| name          | VARCHAR(100)| Nome do alimento      |
+| quantity_kg   | NUMERIC     | Quantidade em kg      |
+| age_range     | INTEGER     | Faixa etária do animal (Jovem, Adulto)|
+| animal_size   | INTEGER     | Tamanho do animal (Pequeno, Médio, Grande)     |
+
+### warehouse_medicines
+
+| Coluna    | Tipo        | Descrição             |
+|-----------|-------------|-----------------------|
+| id        | SERIAL      | Chave primária        |
+| name      | VARCHAR(100)| Nome do medicamento   |
+| type      | INTEGER     | Tipo de medicamento (Comprimido, Líquido, Injetável, Spary, Pomada)    |
+| quantity  | NUMERIC     | Quantidade            |
+
+### warehouse_cleaning_materials
+
+| Coluna    | Tipo        | Descrição                  |
+|-----------|-------------|----------------------------|
+| id        | SERIAL      | Chave primária             |
+| name      | VARCHAR(100)| Nome do material de limpeza|
+| quantity  | NUMERIC     | Quantidade                 |
