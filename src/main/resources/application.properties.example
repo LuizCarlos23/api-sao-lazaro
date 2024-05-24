@@ -2,3 +2,5 @@ spring.datasource.url=jdbc:postgresql://localhost:5432/sao_lazaro
 spring.datasource.driveClassName=org.postgresql.Driver
 spring.datasource.username=postgres
 spring.datasource.password=password
+
+server.error.include-stacktrace = never
