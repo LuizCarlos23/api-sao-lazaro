@@ -45,38 +45,38 @@ Esta documentação descreve as rotas disponíveis na API do sistema.
 | Listar Animais No Abrigo      | GET    | `/animal/shelter`             | Retorna uma lista de animais no abrigo | N/A                                                                                   |
 | Listar Animais Adotados       | GET    | `/animal/adopteds`            | Retorna uma lista de animais adotados | N/A                                                                                   |
 | Listar Animais Falecido       | GET    | `/animal/deceaseds`           | Retorna uma lista de animais falecidos | N/A                                                                                   |
-| Registrar Animal              | POST   | `/animal/`                    | Registra um novo animal              | `{ "entranceDate": "string", "race": "string", "location": "string", "anamnesis": "string" }` |
-| Registrar Adoção Animal       | POST   | `/animal/adopte`              | Registra a adoção de um animal       | `{ "id": int, "adopterName": "string", "adopterNumber": "string", "adopterCpf": "string" }` |
-| Registrar Óbito Animal        | POST   | `/animal/decease`             | Registra o óbito de um animal        | `{ "id": int, "reason": "string" }`                                                  |
-| Editar Animal                 | PUT    | `/animal/5`                   | Edita um animal específico           | `{ "id": int, "entranceDate": "string", "race": "string", "local": "string", "anamnesis": "string" }` |
-| Remover Animal                | DELETE | `/animal/3`                   | Remove um animal específico          | N/A                                                                                   |
+| Registrar Animal              | POST   | `/animal/`                    | Registra um novo animal              | `{ "entranceDate": string, "race": string, "location": string, "anamnesis": string }` |
+| Registrar Adoção Animal       | POST   | `/animal/adopte`              | Registra a adoção de um animal       | `{ "id": integer, "adopterName": string, "adopterNumber": string, "adopterCpf": string }` |
+| Registrar Óbito Animal        | POST   | `/animal/decease`             | Registra o óbito de um animal        | `{ "id": integer, "reason": string }`                                                  |
+| Editar Animal                 | PUT    | `/animal/{id}`                   | Edita um animal específico           | `{ "id": integer, "entranceDate": string, "race": string, "local": string, "anamnesis": string }` |
+| Remover Animal                | DELETE | `/animal/{id}`                   | Remove um animal específico          | N/A                                                                                   |
 
 ### Compras
 
 | Nome                          | Método | URL                               | Descrição                     | Body                                                                                                                                                                                                                                               |
 |-------------------------------|--------|-----------------------------------|-------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Listar Compras                | GET    | `/shopping/`                      | Retorna uma lista de todas as compras realizadas | N/A                                                                                                                                                                                                                                                |
-| Registrar Compra Comida       | POST   | `/shopping/food`                  | Registra uma nova compra de comida     | ```json { "name": "string", "quantity": "integer", "value": "float" } ```                                                                                                                                                                          |
-| Registrar Compra Ração        | POST   | `/shopping/pet_food`              | Registra uma nova compra de ração para animais    | ```json { "petfoodSpecie": 0, "name": "Dog Food", "quantity": 2, "petfoodAgeRange": 1, "petfoodAnimalSize": 2, "value": 122.5 } ```                                                                                                                |
-| Registrar Compra Remédio      | POST   | `/shopping/medicine`              | Registra uma nova compra de remédio   | ```json { "name": "string", "quantity": "integer", "medicineType": "string" } ```                                                                                                                                                                  |
-| Registrar Compra Material de Limpeza | POST   | `/shopping/cleaning_material`     | Registra uma nova compra de material de limpeza | ```json { "name": "string", "quantity": "integer", "value": "float" } ```                                                                                                                                                                          |
+| Registrar Compra Comida       | POST   | `/shopping/food`                  | Registra uma nova compra de comida     | ```json { "name": string, "quantity": integer, "value": float } ```                                                                                                                                                                          |
+| Registrar Compra Ração        | POST   | `/shopping/pet_food`              | Registra uma nova compra de ração para animais    | ```json { "petfoodSpecie": integer, "name": "Dog Food", "quantity": integer, "petfoodAgeRange": integer, "petfoodAnimalSize": integer, "value": float } ```                                                                                                                |
+| Registrar Compra Remédio      | POST   | `/shopping/medicine`              | Registra uma nova compra de remédio   | ```json { "name": string, "quantity": integer, "medicineType": string } ```                                                                                                                                                                  |
+| Registrar Compra Material de Limpeza | POST   | `/shopping/cleaning_material`     | Registra uma nova compra de material de limpeza | ```json { "name": string, "quantity": integer, "value": float } ```                                                                                                                                                                          |
 
 ### Doações Gerais
 
 | Nome                          | Método | URL                               | Descrição                     | Body                                                                                                                                                                                                                                               |
 |-------------------------------|--------|-----------------------------------|-------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Listar Doações                | GET    | `/general_donation/`              | Retorna uma lista de todas as doações realizadas | N/A                                                                                                                                                                                                                                                |
-| Registrar Doação Comida       | POST   | `/general_donation/food`          | Registra uma nova doação de comida     | ```json { "name": "string", "quantity": "integer" } ```                                                                                                                                                                                            |
-| Registrar Doação Ração        | POST   | `/general_donation/pet_food`      | Registra uma nova doação de ração para animais    | ```json { "specie": "integer", "name": "string", "quantityKg": "integer", "ageRange": "integer", "animalSize": "integer" } ```                                                                                                                     |
-| Registrar Doação Remédio      | POST   | `/general_donation/medicine`      | Registra uma nova doação de remédio   | ```json { "type": "integer", "name": "string", "quantity": "integer" } ```                                                                                                                                                                         |
-| Registrar Doação Material de Limpeza | POST   | `/general_donation/cleaning_material` | Registra uma nova doação de material de limpeza | ```json { "name": "string", "quantity": "integer" } ```                                                                                                                                                                                            |
+| Registrar Doação Comida       | POST   | `/general_donation/food`          | Registra uma nova doação de comida     | ```json { "name": string, "quantity": integer } ```                                                                                                                                                                                            |
+| Registrar Doação Ração        | POST   | `/general_donation/pet_food`      | Registra uma nova doação de ração para animais    | ```json { "specie": integer, "name": string, "quantityKg": integer, "ageRange": integer, "animalSize": integer } ```                                                                                                                     |
+| Registrar Doação Remédio      | POST   | `/general_donation/medicine`      | Registra uma nova doação de remédio   | ```json { "type": integer, "name": string, "quantity": integer } ```                                                                                                                                                                         |
+| Registrar Doação Material de Limpeza | POST   | `/general_donation/cleaning_material` | Registra uma nova doação de material de limpeza | ```json { "name": string, "quantity": integer } ```                                                                                                                                                                                            |
 
 ### Doações Monetárias
 
 | Nome                          | Método | URL                               | Descrição                     | Body                                                                                  |
 |-------------------------------|--------|-----------------------------------|-------------------------------|---------------------------------------------------------------------------------------|
 | Listar Doações                | GET    | `/monetary_donation/`             | Retorna uma lista de todas as doações monetárias  | N/A                                                                                   |
-| Registrar Doação Monetária    | POST   | `/monetary_donation/`             | Registra uma nova doação monetária  | `{ "type": int, "date": string, "value": int }`                                       |
+| Registrar Doação Monetária    | POST   | `/monetary_donation/`             | Registra uma nova doação monetária  | `{ "type": integer, "date": string, "value": integer }`                                       |
 
 
 ### Alimentos
@@ -84,8 +84,8 @@ Esta documentação descreve as rotas disponíveis na API do sistema.
 | Nome             | Método | URL                    | Descrição                            | Body                                                                                                                                           |
 |------------------|--------|------------------------|--------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------|
 | Listar Rações    | GET    | `/food/`               | Retorna uma lista de todas as rações | N/A                                                                                                                                            |
-| Editar Ração     | PUT    | `/food/{id}`              | Edita uma ração específica           | ```json { "name": "string", "quantity": "integer" } ```                                                                                        |
-| Baixa Ração      | PUT    | `/food/writeoff`       | Dá baixa em uma ração específica     | ```json { "id": "integer", "quantity": "integer" } ```                                                                                         |
+| Editar Ração     | PUT    | `/food/{id}`              | Edita uma ração específica           | ```json { "name": string, "quantity": integer } ```                                                                                        |
+| Baixa Ração      | PUT    | `/food/writeoff`       | Dá baixa em uma ração específica     | ```json { "id": integer, "quantity": integer } ```                                                                                         |
 | Remover Ração    | DELETE | `/food/{id}`              | Remove uma ração específica          | N/A                                                                                                                                            |
 
 ### Rações
@@ -93,8 +93,8 @@ Esta documentação descreve as rotas disponíveis na API do sistema.
 | Nome             | Método | URL                    | Descrição                            | Body                                                                                  |
 |------------------|--------|------------------------|--------------------------------------|---------------------------------------------------------------------------------------|
 | Listar Rações    | GET    | `/pet_food/`           | Retorna uma lista de todas as rações | N/A                                                                                   |
-| Editar Ração     | PUT    | `/pet_food/{id}`          | Edita uma ração específica           | `{ "specie": int, "name": string, "quantityKg": int, "ageRange": int, "animalSize": int }` |
-| Baixa Ração      | PUT    | `/pet_food/writeoff`   | Dá baixa em uma ração específica     | `{ "id": int, "quantity": int }`                                                      |
+| Editar Ração     | PUT    | `/pet_food/{id}`          | Edita uma ração específica           | `{ "specie": integer, "name": string, "quantityKg": integer, "ageRange": integer, "animalSize": integer }` |
+| Baixa Ração      | PUT    | `/pet_food/writeoff`   | Dá baixa em uma ração específica     | `{ "id": integer, "quantity": integer }`                                                      |
 | Remover Ração    | DELETE | `/pet_food/{id}`          | Remove uma ração específica          | N/A                                                                                   |
 
 ### Medicamentos
@@ -102,8 +102,8 @@ Esta documentação descreve as rotas disponíveis na API do sistema.
 | Nome                | Método | URL                        | Descrição                            | Body                                                                                  |
 |---------------------|--------|----------------------------|--------------------------------------|---------------------------------------------------------------------------------------|
 | Listar Medicamentos | GET    | `/medicine/`               | Retorna uma lista de todos os medicamentos | N/A                                                                                   |
-| Editar Medicamento  | PUT    | `/medicine/{id}`              | Edita um medicamento específico          | `{ "type": int, "name": string, "quantity": int }`                                    |
-| Baixa Medicamento   | PUT    | `/medicine/writeoff`       | Dá baixa em um medicamento específico    | `{ "id": int, "quantity": int }`                                                      |
+| Editar Medicamento  | PUT    | `/medicine/{id}`              | Edita um medicamento específico          | `{ "type": integer, "name": string, "quantity": integer }`                                    |
+| Baixa Medicamento   | PUT    | `/medicine/writeoff`       | Dá baixa em um medicamento específico    | `{ "id": integer, "quantity": integer }`                                                      |
 | Remover Medicamento | DELETE | `/medicine/{id}`              | Remove um medicamento específico         | N/A                                                                                   |
 
 ### Materiais de Limpeza
@@ -111,7 +111,7 @@ Esta documentação descreve as rotas disponíveis na API do sistema.
 | Nome                          | Método | URL                              | Descrição                            | Body                                                                                  |
 |-------------------------------|--------|----------------------------------|--------------------------------------|---------------------------------------------------------------------------------------|
 | Listar Materiais de Limpeza  | GET    | `/cleaningmaterial/`            | Retorna uma lista de todos os materiais de limpeza | N/A                                                                                   |
-| Editar Materiais de Limpeza  | PUT    | `/cleaningmaterial/1`           | Edita um material de limpeza específico          | `{ "name": string, "quantity": int }`                                                 |
-| Baixa Materiais de Limpeza   | PUT    | `/cleaningmaterial/writeoff`    | Dá baixa em um material de limpeza específico    | `{ "id": int, "quantity": int }`                                                      |
-| Remover Materiais de Limpeza | DELETE | `/cleaningmaterial/1`           | Remove um material de limpeza específico         | N/A                                                                                   |
+| Editar Materiais de Limpeza  | PUT    | `/cleaningmaterial/{id}`           | Edita um material de limpeza específico          | `{ "name": string, "quantity": integer }`                                                 |
+| Baixa Materiais de Limpeza   | PUT    | `/cleaningmaterial/writeoff`    | Dá baixa em um material de limpeza específico    | `{ "id": integer, "quantity": integer }`                                                      |
+| Remover Materiais de Limpeza | DELETE | `/cleaningmaterial/{id}`           | Remove um material de limpeza específico         | N/A                                                                                   |
 
