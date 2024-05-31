@@ -25,6 +25,16 @@
     .active {
       background-color: #801E23 !important;
     }
+
+    .accordion-body ul li {
+      list-style-type: none;
+    }
+
+    .nav-link:hover {
+      background-color: #80373b51;
+      
+    }
+
   </style>
 </head>
 
@@ -33,7 +43,7 @@
     <div class="row h-100">
       <div class="sidebar d-flex flex-column flex-shrink-0 p-3 h-100">
         <a href="/" class="d-flex justify-content-center align-items-center text-white text-decoration-none">
-          <img src="../../img/logo-abrigo-sao-lazaro-sem-bg" alt="" srcset="" class="w-100 h-100">
+          <img src="../../img/logo-abrigo-sao-lazaro-sem-bg.png" alt="" srcset="" class="w-100 h-100">
         </a>
         <hr>
         <ul class="nav nav-pills flex-column mb-auto">
@@ -50,10 +60,42 @@
             </a>
           </li>
           <li>
-            <a href="#" class="nav-link text-black">
+            <a href="estoque.html" class="nav-link text-black">
               <i class="bi bi-box-seam pe-none me-2"></i>
               Estoque
+            </a>            
+          </li>
+          <li>
+            <a href="#" class="nav-link text-black">
+              <i class="bi bi-bag pe-none me-2"></i>
+              <span>Compras</span>
             </a>
+          </li>
+          <li>
+            <a href="#" class="d-flex justify-content-between nav-link text-black" data-bs-toggle="collapse" data-bs-target="#donationsMenu" aria-expanded="true" aria-controls="donationsMenu">
+              <div>
+                <i class="bi bi-box2-heart pe-none me-2"></i>
+                <span>Doações</span>
+              </div>
+              <i class="bi bi-chevron-down align-items-end"></i>
+            </a>
+            
+            <div id="donationsMenu" class="accordion-collapse collapse">
+              <div class="accordion-body">
+                <ul>
+                  <li>
+                    <a href="#" class="nav-link text-black">
+                      <span class="ps-2">Monetárias</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#" class="nav-link text-black">
+                      <span class="ps-2">Gerais</span>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
           </li>
         </ul>
       </div>    
