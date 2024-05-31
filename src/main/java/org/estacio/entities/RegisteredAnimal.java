@@ -5,7 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 @Getter
 @NoArgsConstructor
@@ -18,13 +18,13 @@ public class RegisteredAnimal {
     private int id;
 
     @Column(name = "entry_date", nullable = false)
-    private Date entryDate;
+    private LocalDate entryDate;
 
     @Column(nullable = false)
     private String race;
     private String anamnesis;
 
-    public RegisteredAnimal(Date entryDate, String race, String anamnesis) {
+    public RegisteredAnimal(LocalDate entryDate, String race, String anamnesis) {
         this.entryDate = entryDate;
         this.race = race;
         this.anamnesis = anamnesis;

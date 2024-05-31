@@ -231,14 +231,14 @@
           </main>
         </div>
      </div>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>  
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
     <script src="../js/jquery-3.7.1.min.js"></script>
     <script src="../js/bootstrap5.1/bootstrap.min.js"></script>
     <script>
         document.getElementById('grupo_cons').addEventListener('change', function() {
             var selectedOption = this.value;
             var grupos = document.querySelectorAll('.grupo');
-            
+
             grupos.forEach(function(grupo) {
                 if (grupo.id === 'grupo_' + selectedOption) {
                     grupo.style.display = 'block';

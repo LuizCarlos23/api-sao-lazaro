@@ -17,7 +17,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -99,7 +99,7 @@ public class AnimalController {
             }
 
             entityManager.remove(shelter);
-            entityManager.persist(new AdoptedAnimal(shelter.getRegisteredAnimal(), new Date(), adoptedData.getAdopterName(),
+            entityManager.persist(new AdoptedAnimal(shelter.getRegisteredAnimal(), LocalDate.now(), adoptedData.getAdopterName(),
                     adoptedData.getAdopterNumber(), adoptedData.getAdopterCpf()));
 
             return new ResponseEntity<>(HttpStatus.CREATED);
@@ -121,7 +121,7 @@ public class AnimalController {
             }
 
             entityManager.remove(shelter);
-            entityManager.persist(new DeceasedAnimal(shelter.getRegisteredAnimal(), deceasedAnimal.getReason(), new Date()));
+            entityManager.persist(new DeceasedAnimal(shelter.getRegisteredAnimal(), deceasedAnimal.getReason(), LocalDate.now()));
 
             return new ResponseEntity<>(HttpStatus.CREATED);
         } catch (Exception err) {
@@ -182,6 +182,18 @@ public class AnimalController {
                     .getResultList()
                     .stream()
                     .findFirst().ifPresent(animalInShelter -> entityManager.remove(animalInShelter));
+
+            entityManager.createQuery("select A FROM AdoptedAnimal A WHERE A.registeredAnimal.id = :id", AdoptedAnimal.class)
+                    .setParameter("id", id)
+                    .getResultList()
+                    .stream()
+                    .findFirst().ifPresent(adoptedAnimal -> entityManager.remove(adoptedAnimal));
+
+            entityManager.createQuery("select A FROM DeceasedAnimal A WHERE A.registeredAnimal.id = :id", DeceasedAnimal.class)
+                    .setParameter("id", id)
+                    .getResultList()
+                    .stream()
+                    .findFirst().ifPresent(deceasedAnimal -> entityManager.remove(deceasedAnimal));
 
             entityManager.remove(animalFound);
             return new ResponseEntity<>(HttpStatus.OK);

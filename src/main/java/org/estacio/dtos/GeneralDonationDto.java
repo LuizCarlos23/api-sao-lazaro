@@ -8,7 +8,7 @@ import org.estacio.enums.AnimalSize;
 import org.estacio.enums.MedicineType;
 import org.estacio.enums.Specie;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 @Data
 @AllArgsConstructor
@@ -20,5 +20,5 @@ public class GeneralDonationDto {
     private AgeRange petfoodAgeRange;
     private Specie petfoodSpecie;
     private MedicineType medicineType;
-    private Date date;
+    private LocalDate date;
 }

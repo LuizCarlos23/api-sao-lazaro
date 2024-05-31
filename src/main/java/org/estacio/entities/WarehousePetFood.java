@@ -8,7 +8,6 @@ import org.estacio.enums.AgeRange;
 import org.estacio.enums.AnimalSize;
 import org.estacio.enums.Specie;
 
-import java.util.Date;
 
 @Data
 @NoArgsConstructor

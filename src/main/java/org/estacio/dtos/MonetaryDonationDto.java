@@ -5,7 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.estacio.enums.MonetaryDonationType;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 @Data
 @AllArgsConstructor
@@ -13,5 +13,5 @@ import java.util.Date;
 public class MonetaryDonationDto {
     private MonetaryDonationType type;
     private Double value;
-    private Date date;
+    private LocalDate date;
 }

@@ -17,7 +17,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -61,7 +61,7 @@ public class ShoppingController {
                     shoppingPetFood.getName(),
                     shoppingPetFood.getQuantity(),
                     shoppingPetFood.getValue(),
-                    new Date(), // TODO: ajustar formato
+                    LocalDate.now(),
                     shoppingPetFood.getPetfoodAnimalSize(),
                     shoppingPetFood.getPetfoodAgeRange(),
                     null
@@ -104,7 +104,7 @@ public class ShoppingController {
                     shoppingFood.getName(),
                     shoppingFood.getQuantity(),
                     shoppingFood.getValue(),
-                    new Date(),
+                    LocalDate.now(),
                     null,
                     null,
                     null
@@ -142,7 +142,7 @@ public class ShoppingController {
                     shoppingMedicine.getName(),
                     shoppingMedicine.getQuantity(),
                     shoppingMedicine.getValue(),
-                    new Date(),
+                    LocalDate.now(),
                     null,
                     null,
                     shoppingMedicine.getMedicineType()
@@ -183,7 +183,7 @@ public class ShoppingController {
                     shoppingCleaningMaterial.getName(),
                     shoppingCleaningMaterial.getQuantity(),
                     shoppingCleaningMaterial.getValue(),
-                    new Date(),
+                    LocalDate.now(),
                     null,
                     null,
                     null

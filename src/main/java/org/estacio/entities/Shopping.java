@@ -6,7 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.estacio.enums.*;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 @Getter
 @NoArgsConstructor
@@ -43,9 +43,9 @@ public class Shopping {
     private MedicineType medicineType;
 
     @Column(nullable = false)
-    private Date date;
+    private LocalDate date;
 
-    public Shopping(ShoppingType type, Specie petfoodSpecie, String name, Double quantity, Double value, Date date, AnimalSize petfoodAnimalSize, AgeRange petfoodAgeRange, MedicineType medicineType) {
+    public Shopping(ShoppingType type, Specie petfoodSpecie, String name, Double quantity, Double value, LocalDate date, AnimalSize petfoodAnimalSize, AgeRange petfoodAgeRange, MedicineType medicineType) {
         this.type = type;
         this.petfoodSpecie = petfoodSpecie;
         this.name = name;

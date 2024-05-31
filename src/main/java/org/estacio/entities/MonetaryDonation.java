@@ -6,7 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.estacio.enums.MonetaryDonationType;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 @Getter
 @NoArgsConstructor
@@ -25,9 +25,9 @@ public class MonetaryDonation {
     private Double value;
 
     @Column(nullable = false)
-    private Date date;
+    private LocalDate date;
     
-    public MonetaryDonation(MonetaryDonationType type, Double value, Date date) {
+    public MonetaryDonation(MonetaryDonationType type, Double value, LocalDate date) {
         this.type = type;
         this.value = value;
         this.date = date;

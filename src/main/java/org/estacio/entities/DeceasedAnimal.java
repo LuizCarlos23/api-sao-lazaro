@@ -5,7 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 @Getter
 @NoArgsConstructor
@@ -23,9 +23,9 @@ public class DeceasedAnimal {
 
     private String reason;
 
-    private Date date;
+    private LocalDate date;
 
-    public DeceasedAnimal(RegisteredAnimal registeredAnimal, String reason, Date date) {
+    public DeceasedAnimal(RegisteredAnimal registeredAnimal, String reason, LocalDate date) {
         this.registeredAnimal = registeredAnimal;
         this.reason = reason;
         this.date = date;

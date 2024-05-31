@@ -5,7 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.estacio.enums.*;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 @Data
 @AllArgsConstructor
@@ -18,5 +18,5 @@ public class ShoppingDto {
     private AgeRange petfoodAgeRange;
     private Specie petfoodSpecie;
     private MedicineType medicineType;
-    private Date date;
+    private LocalDate date;
 }

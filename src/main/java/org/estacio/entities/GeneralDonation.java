@@ -10,7 +10,8 @@ import org.estacio.dtos.WarehouseMedicineDto;
 import org.estacio.dtos.WarehousePetFoodDto;
 import org.estacio.enums.*;
 
-import java.util.Date;
+import java.time.LocalDate;
+
 
 @Getter
 @NoArgsConstructor
@@ -44,10 +45,10 @@ public class GeneralDonation {
     private MedicineType medicineType;
 
     @Column(nullable = false)
-    private Date date;
+    private LocalDate date;
 
     public GeneralDonation(GeneralDonationType type, Specie petfoodSpecie,
-                           String name, Double quantity, Date date,
+                           String name, Double quantity, LocalDate date,
                            AnimalSize petfoodAnimalSize, AgeRange petfoodAgeRange,
                            MedicineType medicineType) {
         this.type = type;
@@ -65,7 +66,7 @@ public class GeneralDonation {
         this.petfoodSpecie = petFood.getSpecie();
         this.name = petFood.getName();
         this.quantity = petFood.getQuantityKg();
-        this.date = new Date();
+        this.date = LocalDate.now();
         this.petfoodAnimalSize = petFood.getAnimalSize();
         this.petfoodAgeRange = petFood.getAgeRange();
     }
@@ -74,14 +75,14 @@ public class GeneralDonation {
         this.type = GeneralDonationType.FOOD;
         this.name = food.getName();
         this.quantity = food.getQuantity();
-        this.date = new Date();
+        this.date = LocalDate.now();
     }
 
     public GeneralDonation(WarehouseMedicineDto medicine) {
         this.type = GeneralDonationType.MEDICINE;
         this.name = medicine.getName();
         this.quantity = medicine.getQuantity();
-        this.date = new Date();
+        this.date = LocalDate.now();
         this.medicineType = medicine.getType();
     }
 
@@ -89,6 +90,6 @@ public class GeneralDonation {
         this.type = GeneralDonationType.CLEANING_MATERIAL;
         this.name = cleaningMaterial.getName();
         this.quantity = cleaningMaterial.getQuantity();
-        this.date = new Date();
+        this.date = LocalDate.now();
     }
 }
