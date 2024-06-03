@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registros | São Lazaro</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+  <style>
+    html,
+    body {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-size: 16px;
+    }
+
+    .sidebar {
+      -webkit-box-shadow: 5px 2px 17px 0px rgba(0, 0, 0, 0.16);
+      -moz-box-shadow: 5px 2px 17px 0px rgba(0, 0, 0, 0.16);
+      box-shadow: 5px 2px 17px 0px rgba(0, 0, 0, 0.16);
+      width: 280px
+    }
+
+    .active {
+      background-color: #801E23 !important;
+    }
+
+    .accordion-body ul li {
+      list-style-type: none;
+    }
+
+    .nav-link:hover {
+      background-color: #80373b51;
+
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container-fluid h-100">
+    <div class="row h-100">
+      <div class="sidebar d-flex flex-column flex-shrink-0 p-3 h-100">
+        <a href="/" class="d-flex justify-content-center align-items-center text-white text-decoration-none">
+          <img src="../../img/logo-abrigo-sao-lazaro-sem-bg.png" alt="" srcset="" class="w-100 h-100">
+        </a>
+        <hr>
+        <ul class="nav nav-pills flex-column mb-auto">
+          <li class="nav-item">
+            <a href="#" class="nav-link text-black" aria-current="page">
+              <i class="bi bi-house pe-none me-2"></i>
+              Home
+            </a>
+          </li>
+          <li>
+            <a href="animais.html" class="nav-link text-black">
+              <i class="bi bi-clipboard pe-none me-2"></i>
+              Registros
+            </a>
+          </li>
+          <li>
+            <a href="estoque.html" class="nav-link text-black">
+              <i class="bi bi-box-seam pe-none me-2"></i>
+              Estoque
+            </a>
+          </li>
+          <li>
+            <a href="compras.html" class="nav-link text-white active">
+              <i class="bi bi-bag pe-none me-2"></i>
+              <span>Compras</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="d-flex justify-content-between nav-link text-black" data-bs-toggle="collapse"
+              data-bs-target="#donationsMenu" aria-expanded="true" aria-controls="donationsMenu">
+              <div>
+                <i class="bi bi-box2-heart pe-none me-2"></i>
+                <span>Doações</span>
+              </div>
+              <i class="bi bi-chevron-down align-items-end"></i>
+            </a>
+
+            <div id="donationsMenu" class="accordion-collapse collapse">
+              <div class="accordion-body">
+                <ul>
+                  <li>
+                    <a href="#" class="nav-link text-black">
+                      <span class="ps-2">Monetárias</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#" class="nav-link text-black">
+                      <span class="ps-2">Gerais</span>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <main class="col-sm p-4 overflow-aut">
+        <div class="d-flex justify-content-between">
+            <div>
+                <h1 class="mb-4">Compras</h1>
+            </div>
+            <div class="">
+                <div class="form-floating">
+                  <select class="form-select form-control" id="shoppingType" aria-label="Cadastrar">
+                    <option value="0" selected>Selecione</option>
+                    <option value="1">Alimento</option>
+                    <option value="2">Ração</option>
+                    <option value="3">Medicamento</option>
+                    <option value="4">Material de Limpeza</option>
+                  </select>
+                  <label for="warehouseType">Cadastrar</label>
+                </div>
+              </div>
+        </div>
+
+        <div class="card p-2">
+          <table class="table" id="tableShoppingItems">
+            <thead class="table-dark">
+              <tr>
+                <th scope="col" class="small">Id</th>
+                <th scope="col" class="small">Nome</th>
+                <th scope="col" class="small">Tipo</th>
+                <th scope="col" class="small">Porte do Animal</th>
+                <th scope="col" class="small">Faixa Etária do Animal</th>
+                <th scope="col" class="small">Especie do Animal</th>
+                <th scope="col" class="small">Tipo de Medicamento</th>
+                <th scope="col" class="small">Data de Registro</th>
+                <th scope="col" class="small">Quantidade</th>
+                <th scope="col" class="small">Valor</th>
+              </tr>
+            </thead>
+            <tbody id="tBodyShoppingItems">
+            </tbody>
+          </table>
+
+          <div id="info"></div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- Modal de registrar compra de Alimento -->
+  <div class="modal fade" id="foodShoppingModal" tabindex="-1" aria-labelledby="foodShoppingModal" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5">Registrar compra de Alimento</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form action="" id="formFoodShopping">
+            <div class="row g-2 mb-2">
+
+              <div class="form-floating col">
+                <input type="text" class="form-control" id="inputNameFoodShopping" placeholder="Nome"></input>
+                <label for="inputNameFoodShopping">Nome</label>
+              </div>
+
+              <div class="form-floating col">
+                <input type="number" class="form-control" id="inputFoodQuantityShopping" placeholder="Quantidade"></input>
+                <label for="inputFoodQuantityShopping">Quantidade</label>
+              </div>
+
+              <div class="form-floating col">
+                <input type="number" class="form-control" id="inputFoodValueShopping" placeholder="Valor"></input>
+                <label for="inputFoodValueShopping">Valor</label>
+              </div>
+            </div>
+          </form>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+          <button type="button" class="btn btn-primary" id="btnRegisterFoodShopping">Registrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal de registrar compra de Ração -->
+  <div class="modal fade" id="petFoodShoppingModal" tabindex="-1" aria-labelledby="petFoodShoppingModal" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5">Registrar Compra de Ração</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form action="" id="formPetFoodShopping">
+            <div class="row g-2 mb-2">
+              <div class="form-floating col">
+                <input type="text" class="form-control" id="inputNamePetFoodShopping" placeholder="Nome"></input>
+                <label for="inputNamePetFoodShopping">Nome</label>
+              </div>
+
+              <div class="form-floating col">
+                <select class="form-select form-control" 
+                  id="selectAnimalSpeciePetFoodShopping">
+                  <option selected disabled>Selecione</option>
+                  <option value="0">Cachorro</option>
+                  <option value="1">Gato</option>
+                </select>
+                <label for="selectAnimalSpeciePetFoodShopping">Espécie</label>
+              </div>
+            </div>
+
+            <div class="row g-2 mb-2">
+              <div class="form-floating col">
+                <select class="form-select form-control" 
+                  id="selectAnimalAgeRangePetFoodShopping">
+                  <option selected disabled>Selecione</option>
+                  <option value="0">Jovem</option>
+                  <option value="1">Adulto</option>
+                </select>
+                <label for="selectAnimalAgeRangePetFoodShopping">Faixa Etária</label>
+              </div>
+
+              <div class="form-floating col">
+                <select class="form-select form-control" 
+                  id="selectAnimalSizePetFoodShopping">
+                  <option selected disabled>Selecione</option>
+                  <option value="0">Pequeno</option>
+                  <option value="1">Médio</option>
+                  <option value="2">Grande</option>
+                </select>
+                <label for="selectAnimalSizePetFoodShopping">Porte</label>
+              </div>
+
+              <div class="form-floating col">
+                <input type="number" class="form-control" min="0" id="inputQuantityPetFoodShopping"
+                  placeholder="Quantidade em Kg"></input>
+                <label for="inputQuantityPetFoodShopping">Quantidade em Kg</label>
+              </div>
+
+              <div class="form-floating col">
+                <input type="number" class="form-control" min="0" id="inputValuePetFoodShopping"
+                  placeholder="Valor"></input>
+                <label for="inputValuePetFoodShopping">Valor</label>
+              </div>
+
+
+            </div>
+          </form>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+          <button type="button" class="btn btn-primary" id="btnRegisterPetFoodShopping">Registrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal de registrar compra de Medicamento -->
+  <div class="modal fade" id="medicineShoppingModal" tabindex="-1" aria-labelledby="medicineShoppingModal" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5">Registrar Compra de Ração</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form action="" id="formMedicineShopping">
+            <input type="hidden" id="medicineIdShopping">
+            <div class="row g-2 mb-2">
+
+              <div class="form-floating col-4">
+                <input type="text" class="form-control" id="inputMedicineNameShopping" placeholder="Nome"></input>
+                <label for="inputMedicineNameShopping">Nome</label>
+              </div>
+
+              <div class="form-floating col">
+                <select class="form-select form-control" 
+                  id="selectMedicineTypeShopping">
+                  <option selected disabled>Selecione</option>
+                  <option value="0">Comprimido</option>
+                  <option value="1">Líquido</option>
+                  <option value="2">Injetável</option>
+                  <option value="3">Spray</option>
+                  <option value="4">Pomada</option>
+                </select>
+                <label for="selectMedicineTypeShopping">Tipo</label>
+              </div>
+
+              <div class="form-floating col">
+                <input type="number" min="0" class="form-control" id="inputMedicineQuantityShopping"
+                  placeholder="Quantidade"></input>
+                <label for="inputMedicineQuantityShopping">Quantidade</label>
+              </div>
+
+              <div class="form-floating col">
+                <input type="number" min="0" class="form-control" id="inputMedicineValueShopping"
+                  placeholder="Valor"></input>
+                <label for="inputMedicineValueShopping">Valor</label>
+              </div>
+            </div>
+          </form>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+          <button type="button" class="btn btn-primary" id="btnMedicineShopping">Registrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal de registrar compra de Material de Limpeza -->
+  <div class="modal fade" id="cleaningMaterialShoppingModal" tabindex="-1" aria-labelledby="cleaningMaterialShoppingModal" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5">Registrar compra de Material de Limpeza</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form action="" id="formCleaningMaterialShopping">
+            <div class="row g-2 mb-2">
+
+              <div class="form-floating col">
+                <input type="text" class="form-control" id="inputNameCleaningMaterialShopping" placeholder="Nome"></input>
+                <label for="inputNameCleaningMaterialShopping">Nome</label>
+              </div>
+
+              <div class="form-floating col">
+                <input type="number" class="form-control" id="inputCleaningMaterialQuantityShopping" placeholder="Quantidade"></input>
+                <label for="inputCleaningMaterialQuantityShopping">Quantidade</label>
+              </div>
+
+              <div class="form-floating col">
+                <input type="number" class="form-control" id="inputCleaningMaterialValueShopping" placeholder="Valor"></input>
+                <label for="inputCleaningMaterialValueShopping">Valor</label>
+              </div>
+            </div>
+          </form>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+          <button type="button" class="btn btn-primary" id="btnRegisterCleaningMaterialShopping">Registrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="../js/compras.js"></script>
+</body>
+
+</html>
