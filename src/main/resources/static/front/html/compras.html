@@ -7,34 +7,11 @@
   <title>Registros | São Lazaro</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+  <link rel="stylesheet" href="../css/index.css">
   <style>
-    html,
-    body {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      height: 100%;
-      font-size: 16px;
-    }
-
-    .sidebar {
-      -webkit-box-shadow: 5px 2px 17px 0px rgba(0, 0, 0, 0.16);
-      -moz-box-shadow: 5px 2px 17px 0px rgba(0, 0, 0, 0.16);
-      box-shadow: 5px 2px 17px 0px rgba(0, 0, 0, 0.16);
-      width: 280px
-    }
-
-    .active {
-      background-color: #801E23 !important;
-    }
-
-    .accordion-body ul li {
-      list-style-type: none;
-    }
-
-    .nav-link:hover {
-      background-color: #80373b51;
-
+    .card-data {
+      max-height: 80vh;
+      overflow: auto;
     }
   </style>
 </head>
@@ -73,55 +50,34 @@
             </a>
           </li>
           <li>
-            <a href="#" class="d-flex justify-content-between nav-link text-black" data-bs-toggle="collapse"
-              data-bs-target="#donationsMenu" aria-expanded="true" aria-controls="donationsMenu">
-              <div>
-                <i class="bi bi-box2-heart pe-none me-2"></i>
-                <span>Doações</span>
-              </div>
-              <i class="bi bi-chevron-down align-items-end"></i>
+            <a href="doacoes.html" class="nav-link text-black">
+              <i class="bi bi-box2-heart pe-none me-2"></i>
+              <span>Doações</span>
             </a>
-
-            <div id="donationsMenu" class="accordion-collapse collapse">
-              <div class="accordion-body">
-                <ul>
-                  <li>
-                    <a href="#" class="nav-link text-black">
-                      <span class="ps-2">Monetárias</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#" class="nav-link text-black">
-                      <span class="ps-2">Gerais</span>
-                    </a>
-                  </li>
-                </ul>
-              </div>
-            </div>
           </li>
         </ul>
       </div>
 
-      <main class="col-sm p-4 overflow-aut">
+      <main class="col-sm p-4 h-100">
         <div class="d-flex justify-content-between">
-            <div>
-                <h1 class="mb-4">Compras</h1>
+          <div>
+            <h1 class="mb-4">Compras</h1>
+          </div>
+          <div class="">
+            <div class="form-floating">
+              <select class="form-select form-control" id="shoppingType" aria-label="Cadastrar">
+                <option value="0" selected>Selecione</option>
+                <option value="1">Alimento</option>
+                <option value="2">Ração</option>
+                <option value="3">Medicamento</option>
+                <option value="4">Material de Limpeza</option>
+              </select>
+              <label for="warehouseType">Cadastrar</label>
             </div>
-            <div class="">
-                <div class="form-floating">
-                  <select class="form-select form-control" id="shoppingType" aria-label="Cadastrar">
-                    <option value="0" selected>Selecione</option>
-                    <option value="1">Alimento</option>
-                    <option value="2">Ração</option>
-                    <option value="3">Medicamento</option>
-                    <option value="4">Material de Limpeza</option>
-                  </select>
-                  <label for="warehouseType">Cadastrar</label>
-                </div>
-              </div>
+          </div>
         </div>
 
-        <div class="card p-2">
+        <div class="card p-2 pb-4 card-data">
           <table class="table" id="tableShoppingItems">
             <thead class="table-dark">
               <tr>
@@ -165,7 +121,8 @@
               </div>
 
               <div class="form-floating col">
-                <input type="number" class="form-control" id="inputFoodQuantityShopping" placeholder="Quantidade"></input>
+                <input type="number" class="form-control" id="inputFoodQuantityShopping"
+                  placeholder="Quantidade"></input>
                 <label for="inputFoodQuantityShopping">Quantidade</label>
               </div>
 
@@ -186,7 +143,8 @@
   </div>
 
   <!-- Modal de registrar compra de Ração -->
-  <div class="modal fade" id="petFoodShoppingModal" tabindex="-1" aria-labelledby="petFoodShoppingModal" aria-hidden="true">
+  <div class="modal fade" id="petFoodShoppingModal" tabindex="-1" aria-labelledby="petFoodShoppingModal"
+    aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
@@ -202,8 +160,7 @@
               </div>
 
               <div class="form-floating col">
-                <select class="form-select form-control" 
-                  id="selectAnimalSpeciePetFoodShopping">
+                <select class="form-select form-control" id="selectAnimalSpeciePetFoodShopping">
                   <option selected disabled>Selecione</option>
                   <option value="0">Cachorro</option>
                   <option value="1">Gato</option>
@@ -214,8 +171,7 @@
 
             <div class="row g-2 mb-2">
               <div class="form-floating col">
-                <select class="form-select form-control" 
-                  id="selectAnimalAgeRangePetFoodShopping">
+                <select class="form-select form-control" id="selectAnimalAgeRangePetFoodShopping">
                   <option selected disabled>Selecione</option>
                   <option value="0">Jovem</option>
                   <option value="1">Adulto</option>
@@ -224,8 +180,7 @@
               </div>
 
               <div class="form-floating col">
-                <select class="form-select form-control" 
-                  id="selectAnimalSizePetFoodShopping">
+                <select class="form-select form-control" id="selectAnimalSizePetFoodShopping">
                   <option selected disabled>Selecione</option>
                   <option value="0">Pequeno</option>
                   <option value="1">Médio</option>
@@ -260,7 +215,8 @@
   </div>
 
   <!-- Modal de registrar compra de Medicamento -->
-  <div class="modal fade" id="medicineShoppingModal" tabindex="-1" aria-labelledby="medicineShoppingModal" aria-hidden="true">
+  <div class="modal fade" id="medicineShoppingModal" tabindex="-1" aria-labelledby="medicineShoppingModal"
+    aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
@@ -278,8 +234,7 @@
               </div>
 
               <div class="form-floating col">
-                <select class="form-select form-control" 
-                  id="selectMedicineTypeShopping">
+                <select class="form-select form-control" id="selectMedicineTypeShopping">
                   <option selected disabled>Selecione</option>
                   <option value="0">Comprimido</option>
                   <option value="1">Líquido</option>
@@ -314,7 +269,8 @@
   </div>
 
   <!-- Modal de registrar compra de Material de Limpeza -->
-  <div class="modal fade" id="cleaningMaterialShoppingModal" tabindex="-1" aria-labelledby="cleaningMaterialShoppingModal" aria-hidden="true">
+  <div class="modal fade" id="cleaningMaterialShoppingModal" tabindex="-1"
+    aria-labelledby="cleaningMaterialShoppingModal" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
@@ -326,17 +282,20 @@
             <div class="row g-2 mb-2">
 
               <div class="form-floating col">
-                <input type="text" class="form-control" id="inputNameCleaningMaterialShopping" placeholder="Nome"></input>
+                <input type="text" class="form-control" id="inputNameCleaningMaterialShopping"
+                  placeholder="Nome"></input>
                 <label for="inputNameCleaningMaterialShopping">Nome</label>
               </div>
 
               <div class="form-floating col">
-                <input type="number" class="form-control" id="inputCleaningMaterialQuantityShopping" placeholder="Quantidade"></input>
+                <input type="number" class="form-control" id="inputCleaningMaterialQuantityShopping"
+                  placeholder="Quantidade"></input>
                 <label for="inputCleaningMaterialQuantityShopping">Quantidade</label>
               </div>
 
               <div class="form-floating col">
-                <input type="number" class="form-control" id="inputCleaningMaterialValueShopping" placeholder="Valor"></input>
+                <input type="number" class="form-control" id="inputCleaningMaterialValueShopping"
+                  placeholder="Valor"></input>
                 <label for="inputCleaningMaterialValueShopping">Valor</label>
               </div>
             </div>

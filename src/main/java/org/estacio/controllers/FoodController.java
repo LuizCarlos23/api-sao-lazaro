@@ -28,7 +28,7 @@ public class FoodController {
     @GetMapping ("/")
     public ResponseEntity<?> list () {
         try {
-            String jpql = "select F from WarehouseFood F";
+            String jpql = "select F from WarehouseFood F ORDER BY id DESC";
             TypedQuery<WarehouseFood> query = entityManager.createQuery(jpql, WarehouseFood.class);
             List<WarehouseFood> foods = query.getResultList();
 

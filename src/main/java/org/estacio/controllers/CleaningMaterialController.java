@@ -27,7 +27,7 @@ public class CleaningMaterialController {
     @GetMapping("/")
     public ResponseEntity<?> list () {
         try {
-            String jpql = "select CM from WarehouseCleaningMaterial CM";
+            String jpql = "select CM from WarehouseCleaningMaterial CM ORDER BY id DESC";
             TypedQuery<WarehouseCleaningMaterial> query = entityManager.createQuery(jpql, WarehouseCleaningMaterial.class);
             List<WarehouseCleaningMaterial> cleaningMaterials = query.getResultList();
 

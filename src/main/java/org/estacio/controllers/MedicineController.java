@@ -26,7 +26,7 @@ public class MedicineController {
     @GetMapping("/")
     public ResponseEntity<?> list() {
         try {
-            String jpql = "select A from WarehouseMedicine A";
+            String jpql = "select A from WarehouseMedicine A ORDER BY id DESC";
             TypedQuery<WarehouseMedicine> query = entityManager.createQuery(jpql, WarehouseMedicine.class);
             List<WarehouseMedicine> animals = query.getResultList();
 

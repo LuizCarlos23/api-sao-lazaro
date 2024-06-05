@@ -21,7 +21,7 @@ public class MonetaryDonationController {
     @GetMapping("/")
     public ResponseEntity<?> list() { // TODO: adicionar filtro
         try {
-            String jpql = "select A from MonetaryDonation A";
+            String jpql = "select A from MonetaryDonation A ORDER BY id DESC";
             TypedQuery<MonetaryDonation> query = entityManager.createQuery(jpql, MonetaryDonation.class);
             List<MonetaryDonation> monetaryDonations = query.getResultList();
 

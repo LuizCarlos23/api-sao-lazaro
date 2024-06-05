@@ -39,7 +39,7 @@ public class ShoppingController {
     @GetMapping("/")
     public ResponseEntity<?> list() { // TODO: adicionar filtro
         try {
-            String jpql = "select A from Shopping A";
+            String jpql = "select A from Shopping A ORDER BY id DESC";
             TypedQuery<Shopping> query = entityManager.createQuery(jpql, Shopping.class);
             List<Shopping> shopping = query.getResultList();
 

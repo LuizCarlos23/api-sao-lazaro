@@ -31,7 +31,7 @@ public class AnimalController {
     @GetMapping("/")
     public ResponseEntity<?> list() {
         try {
-            String jpql = "select A from RegisteredAnimal A";
+            String jpql = "select A from RegisteredAnimal A ORDER BY id DESC";
             TypedQuery<RegisteredAnimal> query = entityManager.createQuery(jpql, RegisteredAnimal.class);
             List<RegisteredAnimal> animals = query.getResultList();
 

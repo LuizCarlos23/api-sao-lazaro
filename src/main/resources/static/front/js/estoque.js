@@ -283,7 +283,7 @@ function addFoodInTable(item) {
         <td class='align-middle'>${item.id}</td>
         <td class='align-middle'>${item.name}</td>
         <td class='align-middle'>${item.quantity}</td>
-        <td class='align-middle d-flex justify-content-end pe-5'>
+        <td class='align-middle justify-content-end pe-5'>
             <select class="form-select form-control" aria-label="Ações" onChange="foodActions(this, ${item.id})">
                 <option value="0" selected disabled>Ações</option>
                 <option value="1" >Editar</option>
@@ -304,7 +304,7 @@ function addPetFoodInTable(item) {
         <td class='align-middle'>${AnimalAgeRangeNameTranslate[item.ageRange]}</td>
         <td class='align-middle'>${AnimalSizeNameTranslate[item.animalSize]}</td>
         <td class='align-middle'>${Number(item.quantityKg).toFixed(2)}</td>
-        <td class='align-middle d-flex justify-content-end pe-5'>
+        <td class='align-middle justify-content-end pe-5'>
             <select class="form-select form-control" aria-label="Ações" onChange="petFoodActions(this, ${item.id})">
                 <option value="0" selected disabled>Ações</option>
                 <option value="1" >Editar</option>
@@ -323,7 +323,7 @@ function addMedicineInTable(item) {
         <td class='align-middle'>${item.name}</td>
         <td class='align-middle'>${MedicineTypeNameTranslate[item.type]}</td>
         <td class='align-middle'>${item.quantity}</td>
-        <td class='align-middle d-flex justify-content-end pe-5'>
+        <td class='align-middle justify-content-end pe-5'>
             <select class="form-select form-control" aria-label="Ações" onChange="medicineActions(this, ${item.id})">
                 <option value="0" selected disabled>Ações</option>
                 <option value="1" >Editar</option>
@@ -341,7 +341,7 @@ function addCleaningMaterialInTable(item) {
         <td class='align-middle'>${item.id}</td>
         <td class='align-middle'>${item.name}</td>
         <td class='align-middle'>${item.quantity}</td>
-        <td class='align-middle d-flex justify-content-end pe-5'>
+        <td class='align-middle justify-content-end pe-5'>
             <select class="form-select form-control" aria-label="Ações" onChange="cleaningMaterialActions(this, ${item.id})">
                 <option value="0" selected disabled>Ações</option>
                 <option value="1" >Editar</option>

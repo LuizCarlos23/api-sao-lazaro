@@ -27,7 +27,7 @@ public class PetFoodController {
     @GetMapping("/")
     public ResponseEntity<?> list() {
         try {
-            String jpql = "select A from WarehousePetFood A";
+            String jpql = "select A from WarehousePetFood A ORDER BY id DESC";
             TypedQuery<WarehousePetFood> query = entityManager.createQuery(jpql, WarehousePetFood.class);
             List<WarehousePetFood> animals = query.getResultList();
 

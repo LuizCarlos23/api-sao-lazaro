@@ -144,7 +144,7 @@ function addAnimalInTableShelter(animal) {
         <td class='align-middle'>${animal.registeredAnimal.race}</td>
         <td class='align-middle'>${animal.location}</td>
         <td class='align-middle'>${animal.registeredAnimal.anamnesis}</td>
-        <td class='align-middle d-flex justify-content-end pe-5'>
+        <td class='align-middle justify-content-end pe-5'>
             <select class="form-select form-control" aria-label="Ações" onChange="animalShelterActions(this, ${animal.registeredAnimal.id})">
                 <option value="0" selected disabled>Ações</option>
                 <option value="1" >Adotado</option>
@@ -162,7 +162,7 @@ function addAnimalInTableRegistered(animal) {
         <td class='align-middle'>${animal.entryDate}</td>
         <td class='align-middle'>${animal.race}</td>
         <td class='align-middle'>${animal.anamnesis}</td>
-        <td class='align-middle d-flex justify-content-end pe-5'>
+        <td class='align-middle justify-content-end pe-5'>
             <select class="form-select form-control" aria-label="Ações" onChange="animalRegisteredActions(this, ${animal.id})" >
                 <option value="0" selected disabled>Ações</option>
                 <option value="1">Remover</option>

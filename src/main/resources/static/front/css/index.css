@@ -1,0 +1,62 @@
+html,
+body {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+.sidebar {
+    -webkit-box-shadow: 5px 2px 17px 0px rgba(0, 0, 0, 0.16);
+    -moz-box-shadow: 5px 2px 17px 0px rgba(0, 0, 0, 0.16);
+    box-shadow: 5px 2px 17px 0px rgba(0, 0, 0, 0.16);
+    width: 250px
+}
+
+.active {
+    background-color: #801E23 !important;
+}
+
+.accordion-body ul li {
+    list-style-type: none;
+}
+
+.nav-link:hover {
+    background-color: #80373b51;
+
+}
+
+main {
+    max-height: 99vh;
+    overflow: auto;
+}
+
+th { 
+    vertical-align: middle;
+}
+
+
+/* Estilos para dispositivos de tela grande (desktop) */
+@media only screen and (min-width: 1024px) {
+
+    /* Inserir estilos para tela grande aqui */
+    body {
+        font-size: 16px;
+    }
+}
+
+/* Estilos para tablets e dispositivos com largura média */
+@media only screen and (max-width: 1023px) and (min-width: 768px) {
+
+    body {
+        font-size: 14px;
+    }
+}
+
+/* Estilos para smartphones e dispositivos com largura pequena */
+@media only screen and (max-width: 767px) {
+
+    body {
+        font-size: 12px;
+    }
+}
