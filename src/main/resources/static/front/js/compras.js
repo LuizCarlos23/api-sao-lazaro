@@ -140,16 +140,16 @@ async function getShoppingItems() {
 
 function addItemInTable(item) {
     let row = `<tr> 
-        <td class='align-middle'>${item.id}</td>
-        <td class='align-middle'>${item.name}</td>
-        <td class='align-middle'>${ShoppingTypeNameTranslate[item.type]}</td>
-        <td class='align-middle'>${AnimalSizeNameTranslate[item.petfoodAnimalSize] ?? ""}</td>
-        <td class='align-middle'>${AnimalAgeRangeNameTranslate[item.petfoodAgeRange] ?? ""}</td>
-        <td class='align-middle'>${AnimalSpecieNameTranslate[item.petfoodSpecie] ?? ""}</td>
-        <td class='align-middle'>${MedicineTypeNameTranslate[item.medicineType] ?? ""}</td>
-        <td class='align-middle'>${item.date}</td>
-        <td class='align-middle'>${item.quantity}</td>
-        <td class='align-middle'>${Number(item.value).toFixed(2)}</td>
+        <td class='align-middle py-3'>${item.id}</td>
+        <td class='align-middle py-3'>${item.name}</td>
+        <td class='align-middle py-3 text-center'>${ShoppingTypeNameTranslate[item.type]}</td>
+        <td class='align-middle py-3 text-center'>${AnimalSizeNameTranslate[item.petfoodAnimalSize] ?? ""}</td>
+        <td class='align-middle py-3 text-center'>${AnimalAgeRangeNameTranslate[item.petfoodAgeRange] ?? ""}</td>
+        <td class='align-middle py-3 text-center'>${AnimalSpecieNameTranslate[item.petfoodSpecie] ?? ""}</td>
+        <td class='align-middle py-3 text-center'>${MedicineTypeNameTranslate[item.medicineType] ?? ""}</td>
+        <td class='align-middle py-3 text-center'>${item.date}</td>
+        <td class='align-middle py-3 text-center'>${item.quantity}</td>
+        <td class='align-middle py-3'>${Number(item.value).toFixed(2)}</td>
     </tr>`
 
     document.getElementById("tBodyShoppingItems").innerHTML += row

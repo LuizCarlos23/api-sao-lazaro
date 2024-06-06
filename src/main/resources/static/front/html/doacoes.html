@@ -60,8 +60,9 @@
 
             <main class="col-sm p-4 h-100">
                 <div class="d-flex justify-content-between">
-                    <div>
-                        <h1 class="mb-4">Doações</h1>
+                    <div class="d-flex align-items-center">
+                        <i class="bi bi-caret-right-fill"></i>
+                        <h1 class="ms-2 m-0">Doações</h1>
                     </div>
                     <div class="">
                         <div class="form-floating">
@@ -92,12 +93,8 @@
                         </div>
 
                         <div class="col-3 d-flex justify-content-end align-items-end">
-                            <div class="me-2">
-                                <button type="button" class="btn btn-secondary text-white"
-                                    id="btnLimparFiltro">Limpar</button>
-                            </div>
                             <div>
-                                <button type="button" class="btn btn-info text-white"
+                                <button type="button" class="btn _btn-red text-white"
                                     id="btnPesquisar">Pesquisar</button>
                             </div>
                         </div>
@@ -108,15 +105,15 @@
                     <table class="table" id="tableGeneralDonationsItems">
                         <thead class="table-dark">
                             <tr>
-                                <th scope="col" class="small">Id</th>
+                                <th scope="col" class="small py-3">Id</th>
                                 <th scope="col" class="small">Nome</th>
-                                <th scope="col" class="small">Tipo</th>
-                                <th scope="col" class="small">Porte do Animal</th>
-                                <th scope="col" class="small">Faixa Etária do Animal</th>
-                                <th scope="col" class="small">Especie do Animal</th>
-                                <th scope="col" class="small">Tipo de Medicamento</th>
-                                <th scope="col" class="small">Data de Registro</th>
-                                <th scope="col" class="small">Quantidade</th>
+                                <th scope="col" class="small text-center">Tipo</th>
+                                <th scope="col" class="small text-center">Porte do Animal</th>
+                                <th scope="col" class="small text-center">Faixa Etária do Animal</th>
+                                <th scope="col" class="small text-center">Especie do Animal</th>
+                                <th scope="col" class="small text-center">Tipo de Medicamento</th>
+                                <th scope="col" class="small text-center">Data de Registro</th>
+                                <th scope="col" class="small text-center">Quantidade</th>
                             </tr>
                         </thead>
                         <tbody id="tBodyGeneralDonationsItems">
@@ -128,7 +125,7 @@
                             <tr>
                                 <th scope="col" class="small">Id</th>
                                 <th scope="col" class="small">Tipo</th>
-                                <th scope="col" class="small">Data</th>
+                                <th scope="col" class="small text-center">Data</th>
                                 <th scope="col" class="small">Valor</th>
                             </tr>
                         </thead>
@@ -145,7 +142,7 @@
     <!-- Modal de registrar doação de Alimento -->
     <div class="modal fade" id="foodDonationsModal" tabindex="-1" aria-labelledby="foodDonationsModal"
         aria-hidden="true">
-        <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
                     <h1 class="modal-title fs-5">Registrar doação de Alimento</h1>

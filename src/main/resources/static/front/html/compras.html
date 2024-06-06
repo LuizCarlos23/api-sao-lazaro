@@ -59,9 +59,10 @@
       </div>
 
       <main class="col-sm p-4 h-100">
-        <div class="d-flex justify-content-between">
-          <div>
-            <h1 class="mb-4">Compras</h1>
+        <div class="d-flex justify-content-between mb-3">
+          <div class="d-flex align-items-center">
+            <i class="bi bi-caret-right-fill"></i>
+            <h1 class="ms-2 m-0">Compras</h1>
           </div>
           <div class="">
             <div class="form-floating">
@@ -83,13 +84,13 @@
               <tr>
                 <th scope="col" class="small">Id</th>
                 <th scope="col" class="small">Nome</th>
-                <th scope="col" class="small">Tipo</th>
-                <th scope="col" class="small">Porte do Animal</th>
-                <th scope="col" class="small">Faixa Etária do Animal</th>
-                <th scope="col" class="small">Especie do Animal</th>
-                <th scope="col" class="small">Tipo de Medicamento</th>
-                <th scope="col" class="small">Data de Registro</th>
-                <th scope="col" class="small">Quantidade</th>
+                <th scope="col" class="small text-center">Tipo</th>
+                <th scope="col" class="small text-center">Porte do Animal</th>
+                <th scope="col" class="small text-center">Faixa Etária do Animal</th>
+                <th scope="col" class="small text-center">Especie do Animal</th>
+                <th scope="col" class="small text-center">Tipo de Medicamento</th>
+                <th scope="col" class="small text-center">Data de Registro</th>
+                <th scope="col" class="small text-center">Quantidade</th>
                 <th scope="col" class="small">Valor</th>
               </tr>
             </thead>
@@ -105,7 +106,7 @@
 
   <!-- Modal de registrar compra de Alimento -->
   <div class="modal fade" id="foodShoppingModal" tabindex="-1" aria-labelledby="foodShoppingModal" aria-hidden="true">
-    <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
           <h1 class="modal-title fs-5">Registrar compra de Alimento</h1>
@@ -120,13 +121,13 @@
                 <label for="inputNameFoodShopping">Nome</label>
               </div>
 
-              <div class="form-floating col">
+              <div class="form-floating col-3">
                 <input type="number" class="form-control" id="inputFoodQuantityShopping"
                   placeholder="Quantidade"></input>
                 <label for="inputFoodQuantityShopping">Quantidade</label>
               </div>
 
-              <div class="form-floating col">
+              <div class="form-floating col-3">
                 <input type="number" class="form-control" id="inputFoodValueShopping" placeholder="Valor"></input>
                 <label for="inputFoodValueShopping">Valor</label>
               </div>
@@ -217,7 +218,7 @@
   <!-- Modal de registrar compra de Medicamento -->
   <div class="modal fade" id="medicineShoppingModal" tabindex="-1" aria-labelledby="medicineShoppingModal"
     aria-hidden="true">
-    <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
           <h1 class="modal-title fs-5">Registrar Compra de Ração</h1>
@@ -228,7 +229,7 @@
             <input type="hidden" id="medicineIdShopping">
             <div class="row g-2 mb-2">
 
-              <div class="form-floating col-4">
+              <div class="form-floating col">
                 <input type="text" class="form-control" id="inputMedicineNameShopping" placeholder="Nome"></input>
                 <label for="inputMedicineNameShopping">Nome</label>
               </div>
@@ -244,7 +245,9 @@
                 </select>
                 <label for="selectMedicineTypeShopping">Tipo</label>
               </div>
+            </div>
 
+            <div class="row g-2">
               <div class="form-floating col">
                 <input type="number" min="0" class="form-control" id="inputMedicineQuantityShopping"
                   placeholder="Quantidade"></input>
@@ -271,7 +274,7 @@
   <!-- Modal de registrar compra de Material de Limpeza -->
   <div class="modal fade" id="cleaningMaterialShoppingModal" tabindex="-1"
     aria-labelledby="cleaningMaterialShoppingModal" aria-hidden="true">
-    <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
           <h1 class="modal-title fs-5">Registrar compra de Material de Limpeza</h1>
@@ -287,13 +290,13 @@
                 <label for="inputNameCleaningMaterialShopping">Nome</label>
               </div>
 
-              <div class="form-floating col">
+              <div class="form-floating col-3">
                 <input type="number" class="form-control" id="inputCleaningMaterialQuantityShopping"
                   placeholder="Quantidade"></input>
                 <label for="inputCleaningMaterialQuantityShopping">Quantidade</label>
               </div>
 
-              <div class="form-floating col">
+              <div class="form-floating col-3">
                 <input type="number" class="form-control" id="inputCleaningMaterialValueShopping"
                   placeholder="Valor"></input>
                 <label for="inputCleaningMaterialValueShopping">Valor</label>

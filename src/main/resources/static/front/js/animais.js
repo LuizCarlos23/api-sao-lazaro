@@ -140,7 +140,7 @@ async function getAnimals(tableOption) {
 
 function addAnimalInTableShelter(animal) {
     let row = `<tr> 
-        <td class='align-middle'>${animal.registeredAnimal.entryDate}</td>
+        <td class='align-middle py-3'>${animal.registeredAnimal.entryDate}</td>
         <td class='align-middle'>${animal.registeredAnimal.race}</td>
         <td class='align-middle'>${animal.location}</td>
         <td class='align-middle'>${animal.registeredAnimal.anamnesis}</td>
@@ -159,7 +159,7 @@ function addAnimalInTableShelter(animal) {
 
 function addAnimalInTableRegistered(animal) {
     let row = `<tr> 
-        <td class='align-middle'>${animal.entryDate}</td>
+        <td class='align-middle py-3'>${animal.entryDate}</td>
         <td class='align-middle'>${animal.race}</td>
         <td class='align-middle'>${animal.anamnesis}</td>
         <td class='align-middle justify-content-end pe-5'>
@@ -175,7 +175,7 @@ function addAnimalInTableRegistered(animal) {
 
 function addAnimalInTableAdopeteds(animal) {
     let row = `<tr> 
-        <td class='align-middle'>${animal.registeredAnimal.entryDate}</td>
+        <td class='align-middle py-3'>${animal.registeredAnimal.entryDate}</td>
         <td class='align-middle'>${animal.registeredAnimal.race}</td>
         <td class='align-middle'>${animal.registeredAnimal.anamnesis}</td>
         <td class='align-middle'>${animal.adoptionDate}</td>
@@ -189,7 +189,7 @@ function addAnimalInTableAdopeteds(animal) {
 
 function addAnimalInTableDeceases(animal) {
     let row = `<tr> 
-        <td class='align-middle'>${animal.registeredAnimal.entryDate}</td>
+        <td class='align-middle py-3'>${animal.registeredAnimal.entryDate}</td>
         <td class='align-middle'>${animal.registeredAnimal.race}</td>
         <td class='align-middle'>${animal.registeredAnimal.anamnesis}</td>
         <td class='align-middle'>${animal.date}</td>

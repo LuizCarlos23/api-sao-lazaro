@@ -4,6 +4,10 @@ body {
     margin: 0;
     padding: 0;
     height: 100%;
+    
+    font-family: "Roboto Mono", monospace;
+    font-optical-sizing: auto;
+    font-style: normal;
 }
 
 .sidebar {
@@ -35,6 +39,9 @@ th {
     vertical-align: middle;
 }
 
+._btn-red {
+    background-color: #801E23;
+}
 
 /* Estilos para dispositivos de tela grande (desktop) */
 @media only screen and (min-width: 1024px) {
