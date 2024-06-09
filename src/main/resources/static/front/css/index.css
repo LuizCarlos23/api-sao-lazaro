@@ -14,7 +14,8 @@ body {
     -webkit-box-shadow: 5px 2px 17px 0px rgba(0, 0, 0, 0.16);
     -moz-box-shadow: 5px 2px 17px 0px rgba(0, 0, 0, 0.16);
     box-shadow: 5px 2px 17px 0px rgba(0, 0, 0, 0.16);
-    width: 250px
+    width: 250px;
+    transition: transform 0.3s ease;
 }
 
 .active {
@@ -41,6 +42,58 @@ th {
 
 ._btn-red {
     background-color: #801E23;
+}
+
+
+.openbtn {
+    display: none;
+    font-size: 24px;
+    cursor: pointer;
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    z-index: 1001;
+    background-color: #ffffff00;
+    color: rgb(0, 0, 0);
+    border: none;
+    padding: 10px 15px;
+}
+
+
+#btn_bar{
+    width: 40px;
+    margin-left: auto;
+  }
+
+/* Exibir sidebar normalmente em telas maiores */
+@media (max-width: 768px) {
+    .sidebar {
+        transform: translateX(-300px);
+    }
+
+    .openbtn {
+        display: block;
+        font-size: 24px;
+        cursor: pointer;
+        position: fixed;
+        top: 15px;
+        left: 15px;
+        z-index: 1001;
+        background-color: #ffffff00;
+        color: rgb(0, 0, 0);
+        border: none;
+        padding: 10px 15px;
+        
+    }
+
+    .sidebar.show {
+        transform: translateX(0);
+        width: 220px;
+    }
+
+  .sidebar.show ~ .openbtn {
+    display: none;
+}
 }
 
 /* Estilos para dispositivos de tela grande (desktop) */

@@ -366,3 +366,13 @@ async function showMessageConfirmRemoveAnimal(id){
         renderTable(animalsTable.REGISTERED)
     }
 }
+
+document.getElementById("btn_bar").addEventListener("click", function() {
+    document.getElementById("mySidebar").classList.toggle("show");
+});
+
+    // document.getElementById("btn_bar").addEventListener("click", function() {
+    //     // Adiciona ou remove a classe 'collapsed' à barra lateral
+    //     document.getElementById("mySidebar").classList.toggle("collapsed");
+    //     document.getElementById("btn_bar").classList.toggle("collapsed");
+    // });

@@ -194,3 +194,7 @@ async function registerShopping(data, tableOption) {
 
     return registered
 }
+
+document.getElementById("btn_bar").addEventListener("click", function() {
+    document.getElementById("mySidebar").classList.toggle("show");
+});

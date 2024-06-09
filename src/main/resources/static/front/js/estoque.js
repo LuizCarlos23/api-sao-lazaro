@@ -516,3 +516,7 @@ function hideTables(tables) {
         }
     });
 }
+
+document.getElementById("btn_bar").addEventListener("click", function() {
+    document.getElementById("mySidebar").classList.toggle("show");
+});
