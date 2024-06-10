@@ -38,8 +38,8 @@ $("#btnAdopteAnimal").on("click", async () => {
 
     adoptionData.id = adopedAnimalId
     adoptionData.adopterName = $("#inputAdopterName").val()
-    adoptionData.adopterNumber = $("#inputAdopterNumber").val()
-    adoptionData.adopterCpf = $("#inputAdopterCpf").val()
+    adoptionData.adopterNumber = $("#inputAdopterNumber").cleanVal()
+    adoptionData.adopterCpf = $("#inputAdopterCpf").cleanVal()
 
     let result = await registerAdoption(adoptionData)
     if (result) {
@@ -61,6 +61,11 @@ $("#btnDeceaseAnimal").on("click", async () => {
 
     deceaseData.id = deceasedAnimalId
     deceaseData.reason = $("#inputDeceaseReason").val()
+
+    if (deceaseData.reason?.trim() == "") {
+        alert("Escreve o motivo do óbito!")
+        return
+    }
 
     let result = await registerDecease(deceaseData)
     if (result) {
@@ -174,14 +179,23 @@ function addAnimalInTableRegistered(animal) {
 }
 
 function addAnimalInTableAdopeteds(animal) {
+    let element = document.createElement("input")
+    element.value = animal.adopterCpf
+    $(element).mask("000.000.000-00")
+    adopterCpfFormated = $(element).val()
+    element.value = animal.adopterNumber
+    $(element).mask("(00) 00000-0000")
+    adopterNumberFormated = $(element).val()
+
+
     let row = `<tr> 
         <td class='align-middle py-3'>${animal.registeredAnimal.entryDate}</td>
         <td class='align-middle'>${animal.registeredAnimal.race}</td>
         <td class='align-middle'>${animal.registeredAnimal.anamnesis}</td>
         <td class='align-middle'>${animal.adoptionDate}</td>
         <td class='align-middle'>${animal.adopterName}</td>
-        <td class='align-middle'>${animal.adopterNumber}</td>
-        <td class='align-middle'>${animal.adopterCpf}</td>
+        <td class='align-middle'>${adopterNumberFormated}</td>
+        <td class='align-middle'>${adopterCpfFormated}</td>
     </tr>`
 
     document.getElementById("tBodyAnimalsAdopeteds").innerHTML += row

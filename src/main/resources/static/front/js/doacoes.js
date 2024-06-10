@@ -67,7 +67,7 @@ $("#btnRegisterPetFoodDonations").on("click", async () => {
     if (result) {
         $('#petFoodDonationsModal').modal('hide');
         $('#formPetFoodDonations').trigger('reset');
-        renderTable()
+        renderTable(DonationType.GENERAL)
     }
 })
 

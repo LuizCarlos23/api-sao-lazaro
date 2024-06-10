@@ -44,6 +44,13 @@ th {
     background-color: #801E23;
 }
 
+._btn-red:hover {
+    background-color: rgb(85, 20, 24)
+}
+
+._btn-red:first-child:active {
+    background-color: rgb(126, 30, 35);
+}
 
 .openbtn {
     display: none;
