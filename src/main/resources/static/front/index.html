@@ -62,94 +62,174 @@
         </ul>
       </div>
 
-      <main class="col-sm p-4 h-100">
-        <div class="d-flex align-items-center mb-3">
-          <i class="bi bi-caret-right-fill"></i>
-          <h1 class="ms-2 m-0">Início</h1>
-        </div>
-
-        <div class="filters p-4 card my-2">
-          <div class="row g-2">
-            <div class="col">
-              <div class="form-floating col-3">
-                <select class="form-select form-control" id="warehouseType" aria-label="Tipo">
-                  <option value="1" selected>Alimento</option>
-                  <option value="2">Ração</option>
-                  <option value="3">Medicamento</option>
-                  <option value="4">Material de Limpeza</option>
-                </select>
-                <label for="warehouseType">Tipo</label>
-              </div>
+        <main class="col-sm p-4 h-100">
+            <div class="d-flex align-items-center mb-3">
+                <i class="bi bi-caret-right-fill"></i>
+                <h1 class="ms-2 m-0">Visão Geral</h1>
             </div>
 
-            <div class="col-3 d-flex justify-content-end align-items-end">
-              <div>
-                <button type="button" class="btn _btn-red text-white" id="btnPesquisar">Pesquisar</button>
-              </div>
+            <div class="card mb-3">
+                <div class="card-body">
+                    <p id="dataAtual"></p>
+                </div>
             </div>
-          </div>
-        </div>
 
-        <div class="card p-2 pb-4 card-data">
-          <table class="table" id="tableFood">
-            <thead class="table-dark">
-              <tr>
-                <th scope="col">Id</th>
-                <th scope="col">Nome</th>
-                <th scope="col">Quantidade</th>
-                <th scope="col" class="justify-content-end col-sm-2 col-md-2 col-lg-2"></th>
-              </tr>
-            </thead>
-            <tbody id="tBodyFood">
-            </tbody>
-          </table>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="filters p-4 card my-2">
+                        <div class="row g-2">
+                            <div class="col">
+                                <div class="form-floating col-12">
+                                    <select class="form-select form-control" id="warehouseType" aria-label="Tipo">
+                                        <option value="1" selected>Alimento</option>
+                                        <option value="2">Ração</option>
+                                        <option value="3">Medicamento</option>
+                                        <option value="4">Material de Limpeza</option>
+                                    </select>
+                                    <label for="warehouseType">Tipo</label>
+                                </div>
+                            </div>
+                            <div class="col d-flex justify-content-end align-items-end">
+                                <button type="button" class="btn _btn-red text-white" id="btnPesquisar">Pesquisar</button>
+                            </div>
+                        </div>
+                    </div>
 
-          <table class="table d-none" id="tablePetFood">
-            <thead class="table-dark">
-              <tr>
-                <th scope="col">Id</th>
-                <th scope="col">Nome</th>
-                <th scope="col">Espécie</th>
-                <th scope="col">Faixa Etária</th>
-                <th scope="col">Porte do Animal</th>
-                <th scope="col">Quantidade Kg</th>
-                <th scope="col" class="justify-content-end col-sm-2 col-md-2 col-lg-2"></th>
-              </tr>
-            </thead>
-            <tbody id="tBodyPetFood">
-            </tbody>
-          </table>
+                    <div class="card p-2 pb-4 card-data">
+                        <table class="table" id="tableFood">
+                            <thead class="table-dark">
+                            <tr>
+                                <th scope="col">Id</th>
+                                <th scope="col">Nome</th>
+                                <th scope="col">Quantidade</th>
+                                <th scope="col" class="justify-content-end col-sm-2 col-md-2 col-lg-2"></th>
+                            </tr>
+                            </thead>
+                            <tbody id="tBodyFood"></tbody>
+                        </table>
 
-          <table class="table d-none" id="tableMedicine">
-            <thead class="table-dark">
-              <tr>
-                <th scope="col">Id</th>
-                <th scope="col">Nome</th>
-                <th scope="col">Tipo</th>
-                <th scope="col">Quantidade</th>
-                <th scope="col" class="justify-content-end col-sm-2 col-md-2 col-lg-2"></th>
-              </tr>
-            </thead>
-            <tbody id="tBodyMedicine">
-            </tbody>
-          </table>
+                        <table class="table d-none" id="tablePetFood">
+                            <thead class="table-dark">
+                            <tr>
+                                <th scope="col">Id</th>
+                                <th scope="col">Nome</th>
+                                <th scope="col">Espécie</th>
+                                <th scope="col">Faixa Etária</th>
+                                <th scope="col">Porte do Animal</th>
+                                <th scope="col">Quantidade Kg</th>
+                                <th scope="col" class="justify-content-end col-sm-2 col-md-2 col-lg-2"></th>
+                            </tr>
+                            </thead>
+                            <tbody id="tBodyPetFood"></tbody>
+                        </table>
 
-          <table class="table d-none" id="tableCleaningMaterial">
-            <thead class="table-dark">
-              <tr>
-                <th scope="col">Id</th>
-                <th scope="col">Nome</th>
-                <th scope="col">Quantidade</th>
-                <th scope="col" class="justify-content-end col-sm-2 col-md-2 col-lg-2"></th>
-              </tr>
-            </thead>
-            <tbody id="tBodyCleaningMaterial">
-            </tbody>
-          </table>
+                        <table class="table d-none" id="tableMedicine">
+                            <thead class="table-dark">
+                            <tr>
+                                <th scope="col">Id</th>
+                                <th scope="col">Nome</th>
+                                <th scope="col">Tipo</th>
+                                <th scope="col">Quantidade</th>
+                                <th scope="col" class="justify-content-end col-sm-2 col-md-2 col-lg-2"></th>
+                            </tr>
+                            </thead>
+                            <tbody id="tBodyMedicine"></tbody>
+                        </table>
 
-          <div id="info"></div>
-        </div>
-      </main>
+                        <table class="table d-none" id="tableCleaningMaterial">
+                            <thead class="table-dark">
+                            <tr>
+                                <th scope="col">Id</th>
+                                <th scope="col">Nome</th>
+                                <th scope="col">Quantidade</th>
+                                <th scope="col" class="justify-content-end col-sm-2 col-md-2 col-lg-2"></th>
+                            </tr>
+                            </thead>
+                            <tbody id="tBodyCleaningMaterial"></tbody>
+                        </table>
+                        <div id="info"></div>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="filters p-4 card my-2">
+                        <div class="row g-2">
+                            <div class="col">
+                                <div class="form-floating col-12">
+                                    <select class="form-select form-control" id="animalStatus" aria-label="Animais">
+                                        <option value="1" selected>No Abrigo</option>
+                                        <option value="2">Registrados</option>
+                                        <option value="3">Adotados</option>
+                                        <option value="4">Falecidos</option>
+                                    </select>
+                                    <label for="animalStatus">Animais</label>
+                                </div>
+                            </div>
+                            <div class="col d-flex justify-content-end align-items-end">
+                                <button type="button" class="btn text-white _btn-red" id="btnPesquisar">Pesquisar</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card p-2 pb-4 card-data">
+                        <table class="table" id="tableAnimalsInShelter">
+                            <thead class="table-dark">
+                            <tr>
+                                <th scope="col" class="py3">Data de Entrada</th>
+                                <th scope="col">Raça</th>
+                                <th scope="col">Local</th>
+                                <th scope="col">Anamnese</th>
+                                <th scope="col" class="justify-content-end col-sm-2 col-md-2 col-lg-2"></th>
+                            </tr>
+                            </thead>
+                            <tbody id="tBodyAnimalsInShelter"></tbody>
+                        </table>
+
+                        <table class="table d-none" id="tableAnimalsRegistered">
+                            <thead class="table-dark">
+                            <tr>
+                                <th scope="col" class="py3">Data de Entrada</th>
+                                <th scope="col">Raça</th>
+                                <th scope="col">Anamnese</th>
+                                <th scope="col" class="justify-content-end col-sm-2 col-md-2 col-lg-2"></th>
+                            </tr>
+                            </thead>
+                            <tbody id="tBodyAnimalsRegistered"></tbody>
+                        </table>
+
+                        <table class="table d-none" id="tableAnimalsAdopeteds">
+                            <thead class="table-dark">
+                            <tr>
+                                <th scope="col" class="py3">Data de Entrada</th>
+                                <th scope="col">Raça</th>
+                                <th scope="col">Anamnese</th>
+                                <th scope="col">Data de Adoção</th>
+                                <th scope="col">Nome do Adotante</th>
+                                <th scope="col">Número do Adotante</th>
+                                <th scope="col">CPF do Adotante</th>
+                            </tr>
+                            </thead>
+                            <tbody id="tBodyAnimalsAdopeteds"></tbody>
+                        </table>
+
+                        <table class="table d-none" id="tableAnimalsDeceases">
+                            <thead class="table-dark">
+                            <tr>
+                                <th scope="col" class="py3">Data de Entrada</th>
+                                <th scope="col">Raça</th>
+                                <th scope="col">Anamnese</th>
+                                <th scope="col">Data do Óbito</th>
+                                <th scope="col">Motivo</th>
+                            </tr>
+                            </thead>
+                            <tbody id="tBodyAnimalsDeceases"></tbody>
+                        </table>
+                        <div id="info"></div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
     </div>
   </div>
 
@@ -158,6 +238,7 @@
     crossorigin="anonymous"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
   <script src="js/index.js"></script>
+
 </body>
 
 </html>
